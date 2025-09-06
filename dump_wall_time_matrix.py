@@ -1,11 +1,10 @@
 import os
 import yaml
 import csv
+import subprocess
 from collections import defaultdict
 
-# Paths
 UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"
-LOG_DIR = os.path.join(UFS_REPO, "tests/logs")
 ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
 MACHINES = ["orion", "hera", "hercules"]
 NUM_COMMITS = 10
@@ -14,9 +13,12 @@ OUTPUT_DIR = "wall_time_by_case"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def get_recent_hashes():
-    os.system(f"git -C {UFS_REPO} fetch origin develop")
-    hashes = os.popen(f"git -C {UFS_REPO} log origin/develop -n {NUM_COMMITS} --pretty=format:'%h'").read().splitlines()
-    return [h.strip("'") for h in hashes]
+    subprocess.run(["git", "-C", UFS_REPO, "fetch", "origin", "develop"])
+    result = subprocess.run(
+        ["git", "-C", UFS_REPO, "log", "origin/develop", "-n", str(NUM_COMMITS), "--pretty=format:%h"],
+        capture_output=True, text=True
+    )
+    return result.stdout.strip().splitlines()
 
 def load_atm_tests():
     with open(ATM_YAML) as f:
@@ -54,22 +56,21 @@ def parse_wall_time(line):
 def collect_wall_times(hashes, case_map):
     matrix = defaultdict(lambda: defaultdict(dict))  # case → hash → machine → time
     for h in hashes:
-        print(f"\n🔎 Processing commit: {h}")
+        print(f"\n🔎 Checking out commit: {h}")
+        subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
         for machine in MACHINES:
-            log_path = os.path.join(LOG_DIR, f"RegressionTests_{machine}_{h}.log")
-            print(log_path)
+            log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
             if not os.path.exists(log_path):
                 print(f"  ⚠️ Missing log for {machine} at {h}")
                 continue
             with open(log_path) as f:
                 for line in f:
                     if "PASS -- TEST" in line and "[" in line:
-                        print('kimmm',line)
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
-                            c = normalize_test_name(raw_name)
+                            normalized = normalize_test_name(raw_name)
                             wall_time = parse_wall_time(line)
-                            print(normalized)
 
                             print(f"  🔍 Found in log: {raw_name:<35} → normalized: {normalized:<30}", end="")
 
