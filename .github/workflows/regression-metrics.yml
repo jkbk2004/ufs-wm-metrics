@@ -38,7 +38,9 @@ jobs:
           name: regression-metrics
           path: results/by_app/
 
-      # Optional: Commit results back to repo
+      - name: Clean up cloned repo
+        run: rm -rf ufs-weather-model
+
       - name: Commit results to repo
         run: |
           git config --global user.name "github-actions[bot]"
@@ -46,4 +48,3 @@ jobs:
           git add -A
           git commit -m "Update regression results [skip ci]" || echo "No changes to commit"
           git push origin HEAD
-
