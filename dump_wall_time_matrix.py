@@ -4,9 +4,9 @@ import csv
 from collections import defaultdict
 
 # Paths
-UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"  # ✅ Update this to match your actual repo path
+UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"  # ✅ Update if needed
 LOG_DIR = os.path.join(UFS_REPO, "tests/logs")
-ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
+ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/plots_reg/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
 MACHINES = ["orion", "hera", "hercules"]
 NUM_COMMITS = 10
 OUTPUT_DIR = "wall_time_by_case"
@@ -23,17 +23,15 @@ def load_atm_tests():
         config = yaml.safe_load(f)
 
     case_map = defaultdict(set)
-    tests = config.get("tests", [])
-    print(f"🔍 Found {len(tests)} test entries in atm.yaml")
-
-    for entry in tests:
-        name = entry.get("name")
-        machine = entry.get("machine", "").lower()
-        if name and machine in MACHINES:
-            case_map[name].add(machine)
-            print(f"  • {name:<30} (machine: {machine})")
-        else:
-            print(f"  ⚠️ Skipped entry: {entry}")
+    print("🔍 Scanning atm.yaml for test cases...")
+    for app_name, app_config in config.items():
+        tests = app_config.get("tests", [])
+        for entry in tests:
+            if isinstance(entry, dict):
+                for test_name in entry.keys():
+                    for machine in MACHINES:
+                        case_map[test_name].add(machine)
+                    print(f"  • {test_name:<30} (from app: {app_name})")
     return case_map
 
 def parse_wall_time(line):
