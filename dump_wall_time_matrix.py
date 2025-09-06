@@ -4,9 +4,9 @@ import csv
 from collections import defaultdict
 
 # Paths
-UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"  # ✅ Update if needed
+UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"
 LOG_DIR = os.path.join(UFS_REPO, "tests/logs")
-ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/plots_reg/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
+ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
 MACHINES = ["orion", "hera", "hercules"]
 NUM_COMMITS = 10
 OUTPUT_DIR = "wall_time_by_case"
@@ -34,6 +34,12 @@ def load_atm_tests():
                     print(f"  • {test_name:<30} (from app: {app_name})")
     return case_map
 
+def normalize_test_name(name):
+    for suffix in ["_intel", "_gnu", "_pgi", "_nvhpc"]:
+        if name.endswith(suffix):
+            return name[: -len(suffix)]
+    return name
+
 def parse_wall_time(line):
     if "[" in line and "]" in line:
         try:
@@ -58,12 +64,13 @@ def collect_wall_times(hashes, case_map):
                 for line in f:
                     if "PASS -- TEST" in line and "[" in line:
                         try:
-                            test_name = line.split("TEST '")[1].split("'")[0]
-                            if test_name in case_map and machine in case_map[test_name]:
+                            raw_name = line.split("TEST '")[1].split("'")[0]
+                            normalized = normalize_test_name(raw_name)
+                            if normalized in case_map and machine in case_map[normalized]:
                                 wall_time = parse_wall_time(line)
                                 if wall_time:
-                                    matrix[test_name][h][machine] = wall_time
-                                    print(f"  ✅ {test_name:<30} | {machine:<9} | {wall_time:>4} min")
+                                    matrix[normalized][h][machine] = wall_time
+                                    print(f"  ✅ {normalized:<30} | {machine:<9} | {wall_time:>4} min")
                         except Exception:
                             continue
     return matrix
