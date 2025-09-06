@@ -57,12 +57,14 @@ def collect_wall_times(hashes, case_map):
         print(f"\n🔎 Processing commit: {h}")
         for machine in MACHINES:
             log_path = os.path.join(LOG_DIR, f"RegressionTests_{machine}_{h}.log")
+            print(log_path)
             if not os.path.exists(log_path):
                 print(f"  ⚠️ Missing log for {machine} at {h}")
                 continue
             with open(log_path) as f:
                 for line in f:
                     if "PASS -- TEST" in line and "[" in line:
+                        print('kimmm',line)
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
                             c = normalize_test_name(raw_name)
