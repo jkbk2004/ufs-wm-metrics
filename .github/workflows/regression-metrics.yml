@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout current repo
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -24,10 +24,9 @@ jobs:
         run: |
           pip install matplotlib pyyaml
 
-      - name: Clone UFS repos
+      - name: Clone ufs-weather-model
         run: |
           git clone https://x-access-token:${{ secrets.UFS_PAT }}@github.com/ufs-community/ufs-weather-model.git
-          git clone https://x-access-token:${{ secrets.UFS_PAT }}@github.com/ufs-community/ufs-wm-metrics.git
 
       - name: Run regression metrics script
         run: |
