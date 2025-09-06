@@ -4,9 +4,9 @@ import csv
 from collections import defaultdict
 
 # Paths
-UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/plots_reg/ufs-weather-model"
+UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"  # ✅ Update this to match your actual repo path
 LOG_DIR = os.path.join(UFS_REPO, "tests/logs")
-ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/plots_reg/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
+ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
 MACHINES = ["orion", "hera", "hercules"]
 NUM_COMMITS = 10
 OUTPUT_DIR = "wall_time_by_case"
@@ -21,14 +21,19 @@ def get_recent_hashes():
 def load_atm_tests():
     with open(ATM_YAML) as f:
         config = yaml.safe_load(f)
+
     case_map = defaultdict(set)
-    print("🔍 Test cases found in atm.yaml:")
-    for entry in config.get("tests", []):
+    tests = config.get("tests", [])
+    print(f"🔍 Found {len(tests)} test entries in atm.yaml")
+
+    for entry in tests:
         name = entry.get("name")
         machine = entry.get("machine", "").lower()
         if name and machine in MACHINES:
             case_map[name].add(machine)
             print(f"  • {name:<30} (machine: {machine})")
+        else:
+            print(f"  ⚠️ Skipped entry: {entry}")
     return case_map
 
 def parse_wall_time(line):
