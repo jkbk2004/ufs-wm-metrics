@@ -1,4 +1,5 @@
-import os
+
+                                import os
 import yaml
 import csv
 import subprocess
@@ -40,19 +41,19 @@ def normalize_test_name(name):
             return name[: -len(suffix)]
     return name
 
-def parse_wall_time(line):
+def parse_core_hour(line):
     if "[" in line and "]" in line:
         try:
             time_block = line.split("[")[1].split("]")[0]
-            time_str = time_block.split(",")[0].strip()
-            h, m = map(int, time_str.split(":"))
+            core_str = time_block.split(",")[1].strip()
+            h, m = map(int, core_str.split(":"))
             return h * 60 + m
         except Exception:
             return None
     return None
 
-def collect_wall_times(hashes, case_map):
-    matrix = defaultdict(lambda: defaultdict(dict))  # case → hash → machine → time
+def collect_core_hours(hashes, case_map):
+    matrix = defaultdict(lambda: defaultdict(dict))  # case → hash → machine → core_hour
     for h in hashes:
         subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         for machine in MACHINES:
@@ -65,9 +66,9 @@ def collect_wall_times(hashes, case_map):
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
                             normalized = normalize_test_name(raw_name)
-                            wall_time = parse_wall_time(line)
-                            if normalized in case_map and machine in case_map[normalized] and wall_time:
-                                matrix[normalized][h][machine] = wall_time
+                            core_hour = parse_core_hour(line)
+                            if normalized in case_map and machine in case_map[normalized] and core_hour:
+                                matrix[normalized][h][machine] = core_hour
                         except Exception:
                             continue
     return matrix
@@ -88,9 +89,9 @@ def write_csv_and_plot(matrix, hashes):
             y = [hash_map.get(h, {}).get(machine, None) for h in hashes]
             if any(y):
                 plt.plot(hashes, y, label=machine, marker="o")
-        plt.title(f"Wall Time for {case}")
+        plt.title(f"Core Hour Usage for {case}")
         plt.xlabel("Commit Hash")
-        plt.ylabel("Wall Time (minutes)")
+        plt.ylabel("Core Hours (minutes)")
         plt.xticks(rotation=45)
         plt.grid(True)
         plt.legend()
@@ -102,6 +103,6 @@ def write_csv_and_plot(matrix, hashes):
 if __name__ == "__main__":
     hashes = get_recent_hashes()
     case_map = load_atm_tests()
-    matrix = collect_wall_times(hashes, case_map)
+    matrix = collect_core_hours(hashes, case_map)
     write_csv_and_plot(matrix, hashes)
-    print(f"\n✅ Dumped CSVs and PNG plots to {OUTPUT_DIR}/")
+    print(f"\n✅ Core hour CSVs and plots saved to {OUTPUT_DIR}/")
