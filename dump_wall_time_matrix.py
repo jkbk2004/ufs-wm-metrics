@@ -66,11 +66,21 @@ def collect_wall_times(hashes, case_map):
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
                             normalized = normalize_test_name(raw_name)
-                            if normalized in case_map and machine in case_map[normalized]:
-                                wall_time = parse_wall_time(line)
-                                if wall_time:
-                                    matrix[normalized][h][machine] = wall_time
-                                    print(f"  ✅ {normalized:<30} | {machine:<9} | {wall_time:>4} min")
+                            wall_time = parse_wall_time(line)
+
+                            print(f"  🔍 Found in log: {raw_name:<35} → normalized: {normalized:<30}", end="")
+
+                            if normalized in case_map:
+                                if machine in case_map[normalized]:
+                                    if wall_time:
+                                        matrix[normalized][h][machine] = wall_time
+                                        print(f" ✅ matched for {machine:<8} | {wall_time:>4} min")
+                                    else:
+                                        print(" ⚠️ matched but no wall time")
+                                else:
+                                    print(f" ⚠️ test exists but not assigned to {machine}")
+                            else:
+                                print(" ❌ no match in atm.yaml")
                         except Exception:
                             continue
     return matrix
