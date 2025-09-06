@@ -4,21 +4,23 @@ import csv
 import subprocess
 import matplotlib.pyplot as plt
 from collections import defaultdict
+import statistics
 
 # Config
 UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"
 BY_APP_DIR = "/work/noaa/epic/jongkim/UFS-RT/ufs-wm-metrics/tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
-MACHINES = ["orion", "hera", "gaeac6"]
+MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
 NUM_COMMITS = 50
 
 def get_recent_hashes():
     subprocess.run(["git", "-C", UFS_REPO, "fetch", "origin", "develop"])
     result = subprocess.run(
-        ["git", "-C", UFS_REPO, "log", "origin/develop", "-n", str(NUM_COMMITS), "--pretty=format:%h"],
+        ["git", "-C", UFS_REPO, "log", "origin/develop", "-n", str(NUM_COMMITS),
+         "--pretty=format:%h|%ad|%s", "--date=short"],
         capture_output=True, text=True
     )
-    return result.stdout.strip().splitlines()
+    return [line.strip().split("|") for line in result.stdout.strip().splitlines()]
 
 def normalize_test_name(name):
     for suffix in ["_intel", "_gnu", "_pgi", "_nvhpc"]:
@@ -55,9 +57,9 @@ def load_tests_from_yaml(yaml_path):
     return case_map
 
 def collect_metrics(hashes, case_map):
-    core_matrix = defaultdict(lambda: defaultdict(dict))  # case → hash → machine → core_hour
-    mem_matrix = defaultdict(lambda: defaultdict(dict))   # case → hash → machine → memory_mb
-    for h in hashes:
+    core_matrix = defaultdict(lambda: defaultdict(dict))
+    mem_matrix = defaultdict(lambda: defaultdict(dict))
+    for h, date, msg in hashes:
         subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         for machine in MACHINES:
             log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
@@ -80,33 +82,63 @@ def collect_metrics(hashes, case_map):
                             continue
     return core_matrix, mem_matrix
 
+def detect_anomalies(values):
+    clean = [v for v in values if isinstance(v, (int, float))]
+    if len(clean) < 5:
+        return set()
+    median = statistics.median(clean)
+    stdev = statistics.stdev(clean)
+    return {i for i, v in enumerate(values) if isinstance(v, (int, float)) and abs(v - median) > 2 * stdev}
+
 def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
     os.makedirs(out_dir, exist_ok=True)
     for case, hash_map in matrix.items():
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
         with open(csv_path, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(["Hash"] + MACHINES)
-            for h in hashes:
-                row = [h] + [hash_map.get(h, {}).get(m, "") for m in MACHINES]
+            writer.writerow(["Hash", "Date", "Message"] + MACHINES)
+            for h, date, msg in hashes:
+                row = [h, date, msg] + [hash_map.get(h, {}).get(m, "") for m in MACHINES]
                 writer.writerow(row)
 
-        # Plot
-        plt.figure(figsize=(12, 6))
-        for machine in MACHINES:
-            y = [hash_map.get(h, {}).get(machine, None) for h in hashes]
+        # Fancy Plot
+        plt.figure(figsize=(14, 6), dpi=200)
+        styles = ['o-', 's--', '^-', 'd:', 'x-.', 'v--', '*-', 'p:']
+        for i, machine in enumerate(MACHINES):
+            y = [hash_map.get(h, {}).get(machine, None) for h, _, _ in hashes]
             if any(y):
-                plt.plot(hashes, y, label=machine, marker="o")
-        plt.title(f"{ylabel} for {case}")
-        plt.xlabel("Commit Hash")
-        plt.ylabel(ylabel)
-        plt.xticks(rotation=45)
-        plt.grid(True)
-        plt.legend()
+                anomalies = detect_anomalies(y)
+                plt.plot([h for h, _, _ in hashes], y, styles[i % len(styles)],
+                         label=machine, linewidth=2, markersize=6)
+                for idx in anomalies:
+                    plt.plot(hashes[idx][0], y[idx], 'ro', markersize=8)
+
+        plt.title(f"{ylabel} for {case}", fontsize=16)
+        plt.xlabel("Commit Hash", fontsize=14)
+        plt.ylabel(ylabel, fontsize=14)
+        plt.xticks(rotation=45, fontsize=10)
+        plt.yticks(fontsize=12)
+        plt.grid(True, linestyle='--', alpha=0.5)
+        plt.legend(fontsize=12)
         plt.tight_layout()
         png_path = csv_path.replace(".csv", ".png")
         plt.savefig(png_path)
         plt.close()
+
+def write_summary(app_name, core_matrix, mem_matrix, hashes):
+    path = os.path.join(RESULTS_DIR, "summary", f"{app_name}_summary.md")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        f.write(f"# Summary for {app_name}\n\n")
+        for case in sorted(core_matrix.keys()):
+            f.write(f"## {case}\n")
+            core_vals = [core_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
+            mem_vals = [mem_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
+            core_anoms = len(detect_anomalies(core_vals))
+            mem_anoms = len(detect_anomalies(mem_vals))
+            f.write(f"- Core hour anomalies: {core_anoms}\n")
+            f.write(f"- Memory anomalies: {mem_anoms}\n")
+            f.write(f"- Machines: {', '.join(sorted(core_matrix[case].get(hashes[-1][0], {}).keys()))}\n\n")
 
 def process_app_yaml(yaml_file, hashes):
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
@@ -119,6 +151,7 @@ def process_app_yaml(yaml_file, hashes):
 
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (minutes)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
+    write_summary(app_name, core_matrix, mem_matrix, hashes)
 
 if __name__ == "__main__":
     hashes = get_recent_hashes()
