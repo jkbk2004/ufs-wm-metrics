@@ -1,51 +1,51 @@
-Hash,orion,hera,gaeac6
-688de8eb,,1099,1013
-7e711129,1036,1085,994
-d4bac232,1036,1085,994
-118cff46,1039,1101,998
-071b9f95,1031,1079,1006
-dc9cfba6,1031,1080,998
-a180bbe4,,1087,1003
-417a2cf1,1031,1091,996
-61e54d9b,1020,1078,1000
-ce74044c,1037,1093,1003
-d820b67f,1055,1082,1007
-5e13aaf2,1030,1079,
-e39a250c,1035,1094,
-8b52797d,1041,1080,999
-93d51aef,1029,1089,1007
-c5b3a3c8,1030,1085,
-f9c10462,1031,1079,
-0e960577,1030,1080,1006
-065def80,1043,1076,1002
-995c51d1,1043,1076,1002
-1f0ab432,1031,1091,1004
-8f8fddc8,1028,1066,1003
-24d8dfd4,1023,1069,1001
-5750b9e3,1013,1065,1001
-a9999828,,1082,1015
-9193010a,1017,1070,1001
-43f2c3bd,1018,1073,1011
-f22b2e11,1018,1073,1011
-aebf9781,1024,1057,1018
-4cbe50f4,1012,1052,998
-269e181a,1012,1052,998
-68fd7faa,1024,1073,1012
-1c5a9f12,1024,1068,1012
-aba31a4e,1026,1052,997
-b81282e5,1026,1052,997
-5a297a6e,1035,1055,1003
-ff162f36,1022,1070,999
-9e4778cd,1022,1055,1002
-4a566203,1036,1054,1004
-4f0111b2,1040,1068,1007
-c0d4de3c,1022,1052,1002
-7cc588ae,1034,1081,1002
-9b9a6304,1035,1078,1003
-4e75e7b4,1052,1113,1029
-69d03840,1054,1087,1036
-0d1af3e3,1058,1103,1036
-6ece76a2,1063,1096,1027
-c5f801e4,1048,1093,1032
-f7d8b0cd,1059,1099,1038
-a8c1628d,1063,1104,1028
+Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),,1099,1013,,,1568,1000,989
+7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),1036,1085,994,,,1568,1002,991
+d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),1036,1085,994,,,1568,1002,991
+118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),1039,1101,998,1089,,,993,997
+071b9f95,2025-08-22,Fix Restart IAU and Ultra-Low Reproducibility Issues by Adding Control Parameter to Restart File (#2851),1031,1079,1006,,,1575,1009,992
+dc9cfba6,2025-08-19,Update CICE through 2025-07 and switch to ice history variables with expected ranges. Sync of WW3 develop to dev/ufs-weather-model (#2852),1031,1080,998,,,1566,991,991
+a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync check with proper if...else block and re-instatiatin… #2859 (#2836),,1087,1003,,,1564,994,996
+417a2cf1,2025-08-13,Fix conus13km tests restart and decomposition reproducibility + Update the detection of Hera/Ursa #2858 (#2753),1031,1091,996,,,1565,991,992
+61e54d9b,2025-08-11,Add two-way ocean-wave coupling feature to the HAFS applications (#2584),1020,1078,1000,,,1566,990,993
+ce74044c,2025-08-06,"Create a user-friendly ""process model"" testing capability + update MOM6 to its main repo. 20250801 commit #2849 (#2719)",1037,1093,1003,,,1563,990,993
+d820b67f,2025-08-01,Update GOCART to v2.4.3 (#2819),1055,1082,1007,,,1552,990,995
+5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),1030,1079,,,,1555,1000,993
+e39a250c,2025-07-24,Update FV3 hash to include UPP ss192/Ursa updates (#2814),1035,1094,,,,1550,992,1007
+8b52797d,2025-07-21,"Combination of 2684,2707,2771 (MERRA2 3-hr, photochem diag, prog closure SFS) (#2813)",1041,1080,999,,,1548,993,995
+93d51aef,2025-07-17,Exporting Canopy Variables from AQM to Facilitate Sub-Canopy Effects in FV3 and CCPP (#2630),1029,1089,1007,,,1555,993,997
+c5b3a3c8,2025-07-14,GFDLMP-v3 and TEMPO MP microphysics (#2503),1030,1085,,,,1557,996,994
+f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),1031,1079,,,,1558,1009,994
+0e960577,2025-07-09,"Combination #2777 (maintask writes CMEPS restart log), #2779 (FV3 CI/CD), and fix RT if statement blocks (#2795)",1030,1080,1006,1092,,1557,992,1007
+065def80,2025-07-07,Port UFS-WM to Ursa (#2471),1043,1076,1002,,,1556,977,995
+995c51d1,2025-07-03,Upgrade UFS-WM to spack-stack/1.9.2 (#2650),1043,1076,1002,1091,,,977,995
+1f0ab432,2025-07-01,Reduce WW3 memory use (#2624),1031,1091,1004,,,,985,1002
+8f8fddc8,2025-06-30,Bring in scale-aware 3DTKE related changes for GFS TKE EDMF PBL scheme #2734; Add option in GFS PBL to use liquid/ice potential temperature in local mixing #2763; Update MOM6 to its main repo. 20250527 commit #2757; Mom6 025 warmstart option #2761 (#2734),1028,1066,1003,1104,,,993,993
+24d8dfd4,2025-06-26,Slight modification in orographic gravity wave drag (OGWD) scheme (#2752),1023,1069,1001,,,,998,991
+5750b9e3,2025-06-20,gcycle update (#2747),1013,1065,1001,,,,981,993
+a9999828,2025-06-12,Add a new parameter in dycore to control cutoff level for implicit RF  (#2730),,1082,1015,,,,994,993
+9193010a,2025-06-06,"In Noah-MP, set zero for canopy liquid and canopy ice over glacier  (#2723)",1017,1070,1001,1096,,,1001,990
+43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),1018,1073,1011,,,,989,1007
+f22b2e11,2025-06-02,Bug fix for surface roughness calculation over lakes and sea ice points when wave model is turned on (#2739),1018,1073,1011,,,,989,1007
+aebf9781,2025-05-27,Fix bug to improve wave initialization by saving location/weights for point output (#2737),1024,1057,1018,,,,987,991
+4cbe50f4,2025-05-23,"Add idealized, regional tropical cyclone test to tests-dev (#2693)",1012,1052,998,,,,983,996
+269e181a,2025-05-23,Add GFSv17 IAU restart tests without waves + Add tags to stoch physics int variables + Fix filepath in user's guide (#2691),1012,1052,998,,,,983,996
+68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",1024,1073,1012,,,,1005,1004
+1c5a9f12,2025-05-09,"Add ""ultra low"" coupled configurations to RTs (Reopen #2564); update inputdata; clean up misc items in multiple test configurations (#2663)",1024,1068,1012,,,,1005,1004
+aba31a4e,2025-05-06,Resolve miscellaneous WM issues and update documentation (#2633),1026,1052,997,,,,988,994
+b81282e5,2025-05-05,Switch to vector remapping and bilinear interpolation for global coupled configurations (#2690),1026,1052,997,,,,988,994
+5a297a6e,2025-05-02,improve coupled model startup cost for waves; Add switch to disable InfoBroadcast in fv3 cap run phase2 (was #2721) (#2715),1035,1055,1003,,,,993,994
+ff162f36,2025-05-01,NSSL MP scheme updates + Stochastic Physics CI/CD & Unit Test (#2661),1022,1070,999,,,,1000,1002
+9e4778cd,2025-04-25,Loosen restriction on optional arguments in CCPP Framework (#2573),1022,1055,1002,,,,992,991
+4a566203,2025-04-23,CMake Atmosphere Dycore Generalization + Fix for JEDI cubed sphere grid #2708 (#2604),1036,1054,1004,,,,991,995
+4f0111b2,2025-04-21,Add CMEPS log file at restart write; IAU Tags for Global Workflow (was #2674) (#2698),1040,1068,1007,,,,986,993
+c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),1022,1052,1002,,,,988,990
+7cc588ae,2025-04-16,Add PIO configuration variables for CMEPS + Update CCPP framework and physics CMakeLists.txt; forward ccpp-framework to HEAD of main #2659 (#2695),1034,1081,1002,,,,995,990
+9b9a6304,2025-04-11,Memcheck fixes (#2655),1035,1078,1003,,,,989,998
+4e75e7b4,2025-04-10,Update upp submodule to the latest UPP (#2682),1052,1113,1029,,,,1024,1028
+69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),1054,1087,1036,,,,1024,1027
+0d1af3e3,2025-04-02,"Convert GFS DDTs from blocked data structures to contiguous arrays: Part Deux  + CCPP updates in fv3atm/ccpp-physics: split physics in two groups, reset GFS_interstitial DDT in CCPP_driver.F90 #2651 + Hera move spack-stack to /contrib #2579 (#2610)",1058,1103,1036,,,,1025,1025
+6ece76a2,2025-03-28,Update WW3  by merging develop  as of 2025-03-20 (#2669),1063,1096,1027,,,,1025,1027
+c5f801e4,2025-03-27,Sync CDEPS and CMEPS to ESCOMP (#2664),1048,1093,1032,,,,1027,1029
+f7d8b0cd,2025-03-26,"Add support for FV3 native grid (cubed sphere) to history and restart write netcdf routines + Add new cmake variable UFS_COMPILER_SUITE to support mixed Intel compilers (icx, icpx, ifort) #2504 (#2591)",1059,1099,1038,,,,1027,1027
+a8c1628d,2025-03-24,Introduce prognostic updraft velocity to saSAS and C3 convection schemes (#2567),1063,1104,1028,,,,1030,1031
