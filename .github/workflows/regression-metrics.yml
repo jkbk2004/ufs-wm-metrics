@@ -33,7 +33,7 @@ jobs:
           python dump_all_apps_core_mem.py
 
       - name: Upload results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: regression-metrics
           path: results/by_app/
