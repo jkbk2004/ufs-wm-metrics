@@ -2,7 +2,7 @@ name: Regression Metrics
 
 on:
   push:
-    branches: [develop]
+    branches: [main]
   schedule:
     - cron: '0 2 */3 * *'  # Every 3 days at 2 AM UTC
 
