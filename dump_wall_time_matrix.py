@@ -2,12 +2,14 @@ import os
 import yaml
 import csv
 import subprocess
+import matplotlib.pyplot as plt
 from collections import defaultdict
 
+# Config
 UFS_REPO = "/work/noaa/epic/jongkim/UFS-RT/ufs-weather-model"
 ATM_YAML = "/work/noaa/epic/jongkim/UFS-RT/ufs-wm-metrics/tests-yamls/configs/by_app/atm.yaml"
-MACHINES = ["orion", "hera", "hercules"]
-NUM_COMMITS = 10
+MACHINES = ["orion", "hera", "gaeac6"]
+NUM_COMMITS = 50
 OUTPUT_DIR = "wall_time_by_case"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -23,17 +25,13 @@ def get_recent_hashes():
 def load_atm_tests():
     with open(ATM_YAML) as f:
         config = yaml.safe_load(f)
-
     case_map = defaultdict(set)
-    print("🔍 Scanning atm.yaml for test cases...")
     for app_name, app_config in config.items():
-        tests = app_config.get("tests", [])
-        for entry in tests:
+        for entry in app_config.get("tests", []):
             if isinstance(entry, dict):
                 for test_name in entry.keys():
                     for machine in MACHINES:
                         case_map[test_name].add(machine)
-                    print(f"  • {test_name:<30} (from app: {app_name})")
     return case_map
 
 def normalize_test_name(name):
@@ -56,13 +54,10 @@ def parse_wall_time(line):
 def collect_wall_times(hashes, case_map):
     matrix = defaultdict(lambda: defaultdict(dict))  # case → hash → machine → time
     for h in hashes:
-        print(f"\n🔎 Checking out commit: {h}")
         subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
         for machine in MACHINES:
             log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
             if not os.path.exists(log_path):
-                print(f"  ⚠️ Missing log for {machine} at {h}")
                 continue
             with open(log_path) as f:
                 for line in f:
@@ -71,41 +66,42 @@ def collect_wall_times(hashes, case_map):
                             raw_name = line.split("TEST '")[1].split("'")[0]
                             normalized = normalize_test_name(raw_name)
                             wall_time = parse_wall_time(line)
-
-                            print(f"  🔍 Found in log: {raw_name:<35} → normalized: {normalized:<30}", end="")
-
-                            if normalized in case_map:
-                                if machine in case_map[normalized]:
-                                    if wall_time:
-                                        matrix[normalized][h][machine] = wall_time
-                                        print(f" ✅ matched for {machine:<8} | {wall_time:>4} min")
-                                    else:
-                                        print(" ⚠️ matched but no wall time")
-                                else:
-                                    print(f" ⚠️ test exists but not assigned to {machine}")
-                            else:
-                                print(" ❌ no match in atm.yaml")
+                            if normalized in case_map and machine in case_map[normalized] and wall_time:
+                                matrix[normalized][h][machine] = wall_time
                         except Exception:
                             continue
     return matrix
 
-def write_csv_per_case(matrix, hashes):
+def write_csv_and_plot(matrix, hashes):
     for case, hash_map in matrix.items():
-        path = os.path.join(OUTPUT_DIR, f"{case}.csv")
-        with open(path, "w", newline="") as f:
+        csv_path = os.path.join(OUTPUT_DIR, f"{case}.csv")
+        with open(csv_path, "w", newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["Hash"] + MACHINES)
             for h in hashes:
                 row = [h] + [hash_map.get(h, {}).get(m, "") for m in MACHINES]
                 writer.writerow(row)
-        print(f"📄 Dumped: {path}")
+
+        # Plot
+        plt.figure(figsize=(12, 6))
+        for machine in MACHINES:
+            y = [hash_map.get(h, {}).get(machine, None) for h in hashes]
+            if any(y):
+                plt.plot(hashes, y, label=machine, marker="o")
+        plt.title(f"Wall Time for {case}")
+        plt.xlabel("Commit Hash")
+        plt.ylabel("Wall Time (minutes)")
+        plt.xticks(rotation=45)
+        plt.grid(True)
+        plt.legend()
+        plt.tight_layout()
+        png_path = csv_path.replace(".csv", ".png")
+        plt.savefig(png_path)
+        plt.close()
 
 if __name__ == "__main__":
     hashes = get_recent_hashes()
     case_map = load_atm_tests()
-    if not case_map:
-        print("⚠️ No test cases found in atm.yaml")
-    else:
-        matrix = collect_wall_times(hashes, case_map)
-        write_csv_per_case(matrix, hashes)
-        print(f"\n✅ All wall time matrices saved to {OUTPUT_DIR}/")
+    matrix = collect_wall_times(hashes, case_map)
+    write_csv_and_plot(matrix, hashes)
+    print(f"\n✅ Dumped CSVs and PNG plots to {OUTPUT_DIR}/")
