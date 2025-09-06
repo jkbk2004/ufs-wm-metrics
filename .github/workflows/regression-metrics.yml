@@ -2,9 +2,10 @@ name: Regression Metrics
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
   schedule:
     - cron: '0 2 */3 * *'  # Every 3 days at 2 AM UTC
+  workflow_dispatch:       # Manual trigger from GitHub UI
 
 jobs:
   analyze:
@@ -25,8 +26,8 @@ jobs:
 
       - name: Clone UFS repos
         run: |
-          git clone https://github.com/ufs-community/ufs-weather-model.git
-          git clone https://github.com/ufs-community/ufs-wm-metrics.git
+          git clone https://x-access-token:${{ secrets.UFS_PAT }}@github.com/ufs-community/ufs-weather-model.git
+          git clone https://x-access-token:${{ secrets.UFS_PAT }}@github.com/ufs-community/ufs-wm-metrics.git
 
       - name: Run regression metrics script
         run: |
