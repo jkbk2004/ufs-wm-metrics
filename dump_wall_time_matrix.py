@@ -65,8 +65,9 @@ def collect_wall_times(hashes, case_map):
                     if "PASS -- TEST" in line and "[" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
-                            normalized = normalize_test_name(raw_name)
+                            c = normalize_test_name(raw_name)
                             wall_time = parse_wall_time(line)
+                            print(normalized)
 
                             print(f"  🔍 Found in log: {raw_name:<35} → normalized: {normalized:<30}", end="")
 
