@@ -2,8 +2,6 @@
 import os, subprocess
 if not os.path.exists("ufs-weather-model"):
     subprocess.run(["git", "clone", "https://github.com/ufs-community/ufs-weather-model.git"])
-if not os.path.exists("ufs-wm-metrics"):
-    subprocess.run(["git", "clone", "https://github.com/ufs-community/ufs-wm-metrics.git"])
 
 # Imports
 import yaml, csv, matplotlib.pyplot as plt
@@ -12,7 +10,7 @@ import statistics
 
 # Config
 UFS_REPO = "ufs-weather-model"
-BY_APP_DIR = "ufs-wm-metrics/tests-yamls/configs/by_app"
+BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
 NUM_COMMITS = 50
