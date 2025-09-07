@@ -163,3 +163,8 @@ if __name__ == "__main__":
     for yaml_file in yaml_files:
         process_app_yaml(yaml_file, hashes)
     print(f"\n✅ All results saved to results/by_app/")
+
+    # Clean up cloned repo
+    if os.path.exists(UFS_REPO):
+        print(f"🧹 Removing cloned repo: {UFS_REPO}")
+        subprocess.run(["rm", "-rf", UFS_REPO])
