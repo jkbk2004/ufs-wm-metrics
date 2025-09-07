@@ -151,7 +151,7 @@ def process_app_yaml(yaml_file, hashes):
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
 
-    write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (minutes)")
+    write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
     write_summary(app_name, core_matrix, mem_matrix, hashes)
 
