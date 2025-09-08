@@ -122,6 +122,45 @@ def load_tests_from_yaml(yaml_path):
                         case_map[test_name].add(machine)
     return case_map
 
+def sanitize_log_line(line):
+    """
+    Sanitize regression log line to enforce:
+    - TEST name wrapped in single quotes
+    - Memory value capped to 7 digits and scaled down if necessary
+
+    Args:
+        line (str): Raw log line from regression output
+
+    Returns:
+        str: Sanitized log line
+    """
+    if "PASS -- TEST" not in line or "[" not in line or "(" not in line:
+        return line  # Skip irrelevant lines
+
+    # Ensure TEST name is quoted
+    if "TEST '" not in line:
+        try:
+            test_start = line.index("TEST ") + len("TEST ")
+            test_end = line.index(" [", test_start)
+            test_name = line[test_start:test_end].strip()
+            line = line.replace(f"TEST {test_name}", f"TEST '{test_name}'")
+        except ValueError:
+            pass  # Leave line unchanged if parsing fails
+
+    # Normalize memory value
+    try:
+        mem_start = line.index("(") + 1
+        mem_end = line.index("MB", mem_start)
+        mem_str = line[mem_start:mem_end].strip()
+        mem_val = int(mem_str)
+        if mem_val > 9999999:
+            mem_val = mem_val // 1000  # Convert to GB-scale MB
+            line = line[:mem_start] + f"{mem_val} " + line[mem_end:]
+    except ValueError:
+        pass  # Leave memory unchanged if parsing fails
+
+    return line
+
 def collect_metrics(hashes, case_map):
     """
     Collects core hour and memory metrics from logs across commits and machines.
@@ -141,9 +180,10 @@ def collect_metrics(hashes, case_map):
         for machine in MACHINES:
             log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
             if not os.path.exists(log_path):
-                continue
+                continue                
             with open(log_path) as f:
-                for line in f:
+                for raw_line in f:
+                    line = sanitize_log_line(raw_line)
                     if "PASS -- TEST" in line and "[" in line and "(" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
