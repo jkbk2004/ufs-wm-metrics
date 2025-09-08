@@ -48,3 +48,21 @@ jobs:
           git add -A
           git commit -m "Update regression results [skip ci]" || echo "No changes to commit"
           git push origin HEAD
+          
+      - name: Clone Wiki repo
+        run: |
+          git clone https://x-access-token:${{ secrets.UFS_PAT }}@github.com/jkbk2004/ufs-wm-metrics.wiki.git wiki
+
+      - name: Copy PNGs to Wiki
+        run: |
+          mkdir -p wiki/regression_metrics/by_app
+          cp -r results/by_app/*.png wiki/regression_metrics/by_app/
+
+      - name: Commit and push to Wiki
+        run: |
+          cd wiki
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add regression_metrics/by_app
+          git commit -m "Update regression metrics PNGs [skip ci]" || echo "No changes to commit"
+          git push origin HEAD
