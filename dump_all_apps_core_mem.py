@@ -251,6 +251,8 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
 
         plt.title(f"{ylabel} for {case}", fontsize=16)
         plt.xlabel("Commit Hash", fontsize=14)
+        # Ensure left-to-right progression
+        plt.gca().invert_xaxis()
         plt.ylabel(ylabel, fontsize=14)
         plt.xticks(rotation=45, fontsize=10)
         plt.yticks(fontsize=12)
