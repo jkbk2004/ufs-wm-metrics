@@ -1,7 +1,7 @@
 # Summary for atmf
 
 ## cpld_regional_atm_fbh
-- Core hour anomalies: 11
-- Memory anomalies: 0
-- Machines: derecho, gaeac6, hera, orion
+- Core hour anomalies: 9
+- Memory anomalies: 50
+- Machines: derecho, gaeac6, hera, hercules, orion
 

@@ -1,20 +1,20 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
-688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),,314,232,,295,237,370,277
-7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),358,316,231,,295,256,359,278
-d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),358,316,231,,295,256,359,278
-118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),410,315,247,294,321,,355,276
-071b9f95,2025-08-22,Fix Restart IAU and Ultra-Low Reproducibility Issues by Adding Control Parameter to Restart File (#2851),377,322,233,,330,242,370,291
-dc9cfba6,2025-08-19,Update CICE through 2025-07 and switch to ice history variables with expected ranges. Sync of WW3 develop to dev/ufs-weather-model (#2852),610,316,237,,310,257,366,289
-a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync check with proper if...else block and re-instatiatin… #2859 (#2836),,319,235,,,240,370,285
-417a2cf1,2025-08-13,Fix conus13km tests restart and decomposition reproducibility + Update the detection of Hera/Ursa #2858 (#2753),357,317,231,,,246,372,291
-61e54d9b,2025-08-11,Add two-way ocean-wave coupling feature to the HAFS applications (#2584),406,322,230,,,245,362,283
-ce74044c,2025-08-06,"Create a user-friendly ""process model"" testing capability + update MOM6 to its main repo. 20250801 commit #2849 (#2719)",450,322,231,,,242,364,285
-d820b67f,2025-08-01,Update GOCART to v2.4.3 (#2819),425,319,230,,,265,369,279
-5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),357,326,,,328,238,363,284
-e39a250c,2025-07-24,Update FV3 hash to include UPP ss192/Ursa updates (#2814),360,321,,,328,240,375,288
-8b52797d,2025-07-21,"Combination of 2684,2707,2771 (MERRA2 3-hr, photochem diag, prog closure SFS) (#2813)",417,322,231,,349,243,367,284
-93d51aef,2025-07-17,Exporting Canopy Variables from AQM to Facilitate Sub-Canopy Effects in FV3 and CCPP (#2630),357,329,230,,333,251,369,283
-c5b3a3c8,2025-07-14,GFDLMP-v3 and TEMPO MP microphysics (#2503),425,319,,,316,266,361,281
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),358,314,232,315,295,237,370,277
+7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),358,316,231,292,295,256,359,278
+d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),358,316,231,292,295,256,359,278
+118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),410,315,247,294,321,240,355,276
+071b9f95,2025-08-22,Fix Restart IAU and Ultra-Low Reproducibility Issues by Adding Control Parameter to Restart File (#2851),377,322,233,302,330,242,370,291
+dc9cfba6,2025-08-19,Update CICE through 2025-07 and switch to ice history variables with expected ranges. Sync of WW3 develop to dev/ufs-weather-model (#2852),610,316,237,465,310,257,366,289
+a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync check with proper if...else block and re-instatiatin… #2859 (#2836),426,319,235,301,323,240,370,285
+417a2cf1,2025-08-13,Fix conus13km tests restart and decomposition reproducibility + Update the detection of Hera/Ursa #2858 (#2753),357,317,231,359,309,246,372,291
+61e54d9b,2025-08-11,Add two-way ocean-wave coupling feature to the HAFS applications (#2584),406,322,230,349,314,245,362,283
+ce74044c,2025-08-06,"Create a user-friendly ""process model"" testing capability + update MOM6 to its main repo. 20250801 commit #2849 (#2719)",450,322,231,294,326,242,364,285
+d820b67f,2025-08-01,Update GOCART to v2.4.3 (#2819),425,319,230,304,325,265,369,279
+5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),357,326,233,295,328,238,363,284
+e39a250c,2025-07-24,Update FV3 hash to include UPP ss192/Ursa updates (#2814),360,321,234,358,328,240,375,288
+8b52797d,2025-07-21,"Combination of 2684,2707,2771 (MERRA2 3-hr, photochem diag, prog closure SFS) (#2813)",417,322,231,363,349,243,367,284
+93d51aef,2025-07-17,Exporting Canopy Variables from AQM to Facilitate Sub-Canopy Effects in FV3 and CCPP (#2630),357,329,230,356,333,251,369,283
+c5b3a3c8,2025-07-14,GFDLMP-v3 and TEMPO MP microphysics (#2503),425,319,230,346,316,266,361,281
 f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),,,,,,,,
 0e960577,2025-07-09,"Combination #2777 (maintask writes CMEPS restart log), #2779 (FV3 CI/CD), and fix RT if statement blocks (#2795)",,,,,,,,
 065def80,2025-07-07,Port UFS-WM to Ursa (#2471),,,,,,,,

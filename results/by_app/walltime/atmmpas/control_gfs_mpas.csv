@@ -1,7 +1,7 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
-688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),,39,,,,,,
-7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),,52,,,,,,
-d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),,52,,,,,,
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),,39,,36,,,,
+7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),,52,,59,,,,
+d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),,52,,59,,,,
 118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),,,,,,,,
 071b9f95,2025-08-22,Fix Restart IAU and Ultra-Low Reproducibility Issues by Adding Control Parameter to Restart File (#2851),,,,,,,,
 dc9cfba6,2025-08-19,Update CICE through 2025-07 and switch to ice history variables with expected ranges. Sync of WW3 develop to dev/ufs-weather-model (#2852),,,,,,,,

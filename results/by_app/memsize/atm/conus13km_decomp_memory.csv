@@ -1,12 +1,12 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
-688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),,1033,1036,,1034,908,1027,1027
-7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),1354,1031,1036,,1034,909,1027,1027
-d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),1354,1031,1036,,1034,909,1027,1027
-118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),1352,1034,1032,1039,1030,,1027,1027
-071b9f95,2025-08-22,Fix Restart IAU and Ultra-Low Reproducibility Issues by Adding Control Parameter to Restart File (#2851),1358,1031,1031,,1032,908,1027,1027
-dc9cfba6,2025-08-19,Update CICE through 2025-07 and switch to ice history variables with expected ranges. Sync of WW3 develop to dev/ufs-weather-model (#2852),1353,1033,1030,,1031,910,1026,1027
-a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync check with proper if...else block and re-instatiatin… #2859 (#2836),,1033,1029,,,910,1026,1027
-417a2cf1,2025-08-13,Fix conus13km tests restart and decomposition reproducibility + Update the detection of Hera/Ursa #2858 (#2753),1356,1036,1032,,,908,1020,1027
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),1351996,1033,1036,1039580,1034,908,1027,1027
+7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),1354,1031,1036,1041896,1034,909,1027,1027
+d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),1354,1031,1036,1041896,1034,909,1027,1027
+118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),1352,1034,1032,1039,1030,910272,1027,1027
+071b9f95,2025-08-22,Fix Restart IAU and Ultra-Low Reproducibility Issues by Adding Control Parameter to Restart File (#2851),1358,1031,1031,1042608,1032,908,1027,1027
+dc9cfba6,2025-08-19,Update CICE through 2025-07 and switch to ice history variables with expected ranges. Sync of WW3 develop to dev/ufs-weather-model (#2852),1353,1033,1030,1040752,1031,910,1026,1027
+a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync check with proper if...else block and re-instatiatin… #2859 (#2836),1353472,1033,1029,1039828,1033064,910,1026,1027
+417a2cf1,2025-08-13,Fix conus13km tests restart and decomposition reproducibility + Update the detection of Hera/Ursa #2858 (#2753),1356,1036,1032,1041628,1032504,908,1020,1027
 61e54d9b,2025-08-11,Add two-way ocean-wave coupling feature to the HAFS applications (#2584),,,,,,,,
 ce74044c,2025-08-06,"Create a user-friendly ""process model"" testing capability + update MOM6 to its main repo. 20250801 commit #2849 (#2719)",,,,,,,,
 d820b67f,2025-08-01,Update GOCART to v2.4.3 (#2819),,,,,,,,
