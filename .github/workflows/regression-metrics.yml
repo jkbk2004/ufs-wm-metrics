@@ -40,6 +40,9 @@ jobs:
 
       #- name: Clean up cloned repo
       #  run: rm -rf ufs-weather-model
+      - name: Pull latest changes before pushing
+        run: |
+          git pull origin develop --rebase
 
       - name: Commit results to repo
         run: |
