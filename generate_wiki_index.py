@@ -1,9 +1,6 @@
 import os
 
 def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Regression-Metrics-by-App.md"):
-    """
-    Recursively generates a Markdown index linking to all PNGs under walltime and memsize inside the Wiki repo.
-    """
     os.makedirs(os.path.dirname(wiki_out), exist_ok=True)
 
     sections = []
@@ -15,18 +12,27 @@ def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Reg
             print(f"Directory not found: {metric_dir}")
             continue
 
-        entries = []
-        for root, _, files in os.walk(metric_dir):
-            for fname in sorted(files):
-                if fname.endswith(".png"):
-                    app_name = os.path.splitext(fname)[0]
-                    rel_path = os.path.relpath(os.path.join(root, fname), start="wiki")
-                    entries.append(f"- **{app_name}**: ![]({rel_path})")
+        app_sections = []
+        for app_name in sorted(os.listdir(metric_dir)):
+            app_dir = os.path.join(metric_dir, app_name)
+            if not os.path.isdir(app_dir):
+                continue
 
-        print(f"Found {len(entries)} PNGs in {metric}")
-        if entries:
-            section_md = f"### 📈 {metric.capitalize()}\n" + "\n".join(entries)
-            sections.append(section_md)
+            pngs = [f for f in sorted(os.listdir(app_dir)) if f.endswith(".png")]
+            if not pngs:
+                continue
+
+            images_md = "\n".join([f"![](regression_metrics/by_app/{metric}/{app_name}/{f})" for f in pngs])
+            app_md = f"""<details>
+<summary><strong>{app_name}</strong></summary>
+
+{images_md}
+
+</details>"""
+            app_sections.append(app_md)
+
+        if app_sections:
+            sections.append(f"### 📈 {metric.capitalize()}\n" + "\n\n".join(app_sections))
 
     with open(wiki_out, "w") as f:
         f.write("# 📊 Regression Metrics by App\n\n")
