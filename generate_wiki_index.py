@@ -1,12 +1,8 @@
 import os
 
-def generate_index(root_dir="results/by_app", wiki_out="wiki/Regression-Metrics-by-App.md"):
+def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Regression-Metrics-by-App.md"):
     """
-    Generates a Markdown index page linking to all PNGs under walltime and memsize.
-
-    Args:
-        root_dir (str): Path to results directory containing metric subfolders
-        wiki_out (str): Path to output Markdown file in Wiki repo
+    Generates a Markdown index page linking to all PNGs under walltime and memsize inside the Wiki repo.
     """
     sections = []
     for metric in ["walltime", "memsize"]:
@@ -18,7 +14,7 @@ def generate_index(root_dir="results/by_app", wiki_out="wiki/Regression-Metrics-
         for fname in sorted(os.listdir(metric_dir)):
             if fname.endswith(".png"):
                 app_name = os.path.splitext(fname)[0]
-                rel_path = f"./regression_metrics/by_app/{metric}/{fname}"
+                rel_path = f"regression_metrics/by_app/{metric}/{fname}"
                 entries.append(f"- **{app_name}**: ![]({rel_path})")
 
         if entries:
