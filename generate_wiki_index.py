@@ -18,7 +18,7 @@ def generate_index(root_dir="results/by_app", wiki_out="wiki/Regression-Metrics-
         for fname in sorted(os.listdir(metric_dir)):
             if fname.endswith(".png"):
                 app_name = os.path.splitext(fname)[0]
-                rel_path = f"regression_metrics/by_app/{metric}/{fname}"
+                rel_path = f"./regression_metrics/by_app/{metric}/{fname}"
                 entries.append(f"- **{app_name}**: ![]({rel_path})")
 
         if entries:
