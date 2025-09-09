@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Needed to access Wiki branch
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,3 +25,14 @@ jobs:
 
       - name: Run regression metrics
         run: python dump_all_apps_core_mem.py
+
+      - name: Update Wiki index
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git clone https://github.com/${{ github.repository }}.wiki.git wiki
+          python generate_wiki_index.py wiki/
+          cd wiki
+          git add .
+          git commit -m "📊 Auto-update Wiki index after metrics dump"
+          git push
