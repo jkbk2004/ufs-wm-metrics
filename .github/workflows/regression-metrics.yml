@@ -1,13 +1,15 @@
 name: Regression Metrics
 
 on:
-  workflow_call:
+  workflow_call:        # Allows triggering from other workflows
+  workflow_dispatch:    # Enables manual runs and REST API triggers
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -16,7 +18,9 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
 
       - name: Run regression metrics
-        run: python dump_all_apps_core_mem.py
+        run: |
+          python dump_all_apps_core_mem.py
