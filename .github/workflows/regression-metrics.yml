@@ -1,8 +1,8 @@
 name: Regression Metrics
 
 on:
-  workflow_call:        # Allows triggering from other workflows
-  workflow_dispatch:    # Enables manual runs and REST API triggers
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -16,6 +16,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
+      - name: Install required Python packages
+        run: |
+          pip install pyyaml matplotlib
 
       - name: Run regression metrics
         run: python dump_all_apps_core_mem.py
