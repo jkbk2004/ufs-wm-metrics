@@ -1,7 +1,7 @@
 name: Regression Metrics
 
 on:
-  workflow_call:  # 👈 Only runs when triggered by another workflow
+  workflow_call:
 
 jobs:
   analyze:

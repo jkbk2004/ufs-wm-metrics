@@ -6,7 +6,7 @@ import os
 REPO = "ufs-community/ufs-weather-model"
 BRANCH = "develop"
 HASH_FILE = ".last_upstream_hash"
-WORKFLOW_NAME = "regression-metrics.yml"
+WORKFLOW_NAME = "Regression Metrics"
 
 # === GET LATEST COMMIT HASH FROM GITHUB API ===
 url = f"https://api.github.com/repos/{REPO}/commits/{BRANCH}"
@@ -23,9 +23,7 @@ if os.path.exists(HASH_FILE):
 # === COMPARE AND TRIGGER WORKFLOW ===
 if latest_hash != prev_hash:
     print(f"🔄 New upstream commit detected: {latest_hash}")
-    subprocess.run([
-        "gh", "workflow", "run", WORKFLOW_NAME
-    ], check=True)
+    subprocess.run(["gh", "workflow", "run", WORKFLOW_NAME], check=True)
     with open(HASH_FILE, "w") as f:
         f.write(latest_hash)
 else:
