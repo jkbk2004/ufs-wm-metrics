@@ -17,10 +17,5 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
       - name: Run regression metrics
-        run: |
-          python dump_all_apps_core_mem.py
+        run: python dump_all_apps_core_mem.py
