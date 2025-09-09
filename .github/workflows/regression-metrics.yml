@@ -1,9 +1,9 @@
-  name: Regression Metrics
+name: Regression Metrics
 
 on:
-  workflow_call:
-  workflow_dispatch:
-
+  workflow_call:        # Allows internal workflows to trigger it
+  workflow_dispatch:    # Enables manual and API-based triggers
+  
 jobs:
   analyze:
     runs-on: ubuntu-latest
