@@ -2,12 +2,13 @@ name: Trigger Regression Metrics on Upstream Change
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Nightly at 2 AM UTC
+    - cron: '0 2 * * *'  # Runs nightly at 2 AM UTC
   workflow_dispatch:
 
 jobs:
   check-upstream:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout current repo
         uses: actions/checkout@v3
@@ -20,8 +21,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Authenticate GitHub CLI
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
       - name: Check upstream hash and trigger metrics workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python .github/scripts/check_and_trigger.py
