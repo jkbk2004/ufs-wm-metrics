@@ -38,9 +38,9 @@ jobs:
         name: regression-metrics
         path: results/by_app/
 
-    - name: Pull latest changes before pushing
-      run: |
-        git pull origin main --rebase
+#    - name: Pull latest changes before pushing
+#      run: |
+#        git pull origin main --rebase
 
     - name: Commit results to repo
       run: |
