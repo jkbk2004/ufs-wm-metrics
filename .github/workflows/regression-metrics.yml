@@ -22,7 +22,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install matplotlib pyyaml
+        pip install requests matplotlib pyyaml
 
     - name: Clone ufs-weather-model
       run: |
