@@ -1,4 +1,5 @@
 import os
+from trigger import get_latest_hash, has_new_commit, log_trigger_event
 
 def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Regression-Metrics-by-App.md"):
     os.makedirs(os.path.dirname(wiki_out), exist_ok=True)
@@ -43,4 +44,6 @@ def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Reg
             f.write("_No plots found in Wiki repo._\n")
 
 if __name__ == "__main__":
-    generate_index()
+    latest = get_latest_hash()
+    if latest and has_new_commit(latest):
+        generate_index()
