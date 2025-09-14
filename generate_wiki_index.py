@@ -1,45 +1,46 @@
 import os
-import datetime
 
-# --- CONFIG ---
-PLOT_DIR = "."  # Adjust if plots are in a subfolder
-OUTPUT_MD = "core_mem_index.md"
-PLOT_PREFIX = "core_mem_plot_"
-PLOT_SUFFIX = ".png"
-REPO_URL = "https://github.com/ufs-community/ufs-weather-model/commit/"
+def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Regression-Metrics-by-App.md"):
+    os.makedirs(os.path.dirname(wiki_out), exist_ok=True)
 
-def find_plot_files():
-    return sorted([
-        f for f in os.listdir(PLOT_DIR)
-        if f.startswith(PLOT_PREFIX) and f.endswith(PLOT_SUFFIX)
-    ])
+    sections = []
+    for metric in ["walltime", "memsize"]:
+        metric_dir = os.path.join(root_dir, metric)
+        print(f"Scanning: {metric_dir}")
 
-def extract_hash(filename):
-    return filename[len(PLOT_PREFIX):-len(PLOT_SUFFIX)]
+        if not os.path.isdir(metric_dir):
+            print(f"Directory not found: {metric_dir}")
+            continue
 
-def build_index_md(plot_files):
-    lines = []
-    lines.append("# 🧠 Core Memory Plot Index\n")
-    lines.append(f"_Last updated: {datetime.datetime.now().isoformat()}_\n")
+        app_sections = []
+        for app_name in sorted(os.listdir(metric_dir)):
+            app_dir = os.path.join(metric_dir, app_name)
+            if not os.path.isdir(app_dir):
+                continue
 
-    for fname in plot_files:
-        commit_hash = extract_hash(fname)
-        short_hash = commit_hash[:7]
-        commit_link = f"{REPO_URL}{commit_hash}"
-        lines.append(f"### Commit [`{short_hash}`]({commit_link})")
-        lines.append(f"![Plot for {short_hash}]({fname})\n")
+            pngs = [f for f in sorted(os.listdir(app_dir)) if f.endswith(".png")]
+            if not pngs:
+                continue
 
-    return "\n".join(lines)
+            images_md = "\n".join([f"![](regression_metrics/by_app/{metric}/{app_name}/{f})" for f in pngs])
+            app_md = f"""<details>
+<summary><strong>{app_name}</strong></summary>
 
-def write_index(md_text, output_file=OUTPUT_MD):
-    with open(output_file, "w") as f:
-        f.write(md_text)
-    print(f"[INFO] Wiki index written to {output_file}")
+{images_md}
+
+</details>"""
+            app_sections.append(app_md)
+
+        if app_sections:
+            sections.append(f"### 📈 {metric.capitalize()}\n" + "\n\n".join(app_sections))
+
+    with open(wiki_out, "w") as f:
+        f.write("# 📊 Regression Metrics by App\n\n")
+        f.write("This page is auto-generated from the latest regression results.\n\n")
+        if sections:
+            f.write("\n\n".join(sections))
+        else:
+            f.write("_No plots found in Wiki repo._\n")
 
 if __name__ == "__main__":
-    plots = find_plot_files()
-    if not plots:
-        print("[INFO] No plots found. Skipping index generation.")
-    else:
-        md = build_index_md(plots)
-        write_index(md)
+    generate_index()
