@@ -1,4 +1,6 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),1881,2012,1727,1900,1846,2501,1853,1862
+e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),1879,2000,1727,1903132,1846,2511,1854,1861
 688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),1873000,2000,1719,1904348,1846,2527,1839,1863
 7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),1876,2009,1724,1903764,1846,2525,1853,1861
 d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),1876,2009,1724,1903764,1846,2525,1853,1861
@@ -47,5 +49,3 @@ c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),1
 0d1af3e3,2025-04-02,"Convert GFS DDTs from blocked data structures to contiguous arrays: Part Deux  + CCPP updates in fv3atm/ccpp-physics: split physics in two groups, reset GFS_interstitial DDT in CCPP_driver.F90 #2651 + Hera move spack-stack to /contrib #2579 (#2610)",1875,1876,1720,1900052,1842,,1849,1848
 6ece76a2,2025-03-28,Update WW3  by merging develop  as of 2025-03-20 (#2669),1881,1894,1725,1901436,1853,,1853,1852
 c5f801e4,2025-03-27,Sync CDEPS and CMEPS to ESCOMP (#2664),1880,1894,1721,1904900,1856,,1852,1852
-f7d8b0cd,2025-03-26,"Add support for FV3 native grid (cubed sphere) to history and restart write netcdf routines + Add new cmake variable UFS_COMPILER_SUITE to support mixed Intel compilers (icx, icpx, ifort) #2504 (#2591)",1882,1893,1724,1916748,1856,,1854,1851
-a8c1628d,2025-03-24,Introduce prognostic updraft velocity to saSAS and C3 convection schemes (#2567),1873,1864,1717,1904352,1849,,1855,1851
