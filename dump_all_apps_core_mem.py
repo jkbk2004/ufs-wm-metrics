@@ -39,7 +39,7 @@ BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
 NUM_COMMITS = 50
-DRIFT_THRESHOLD_DAYS = 5
+DRIFT_THRESHOLD_DAYS = 7
 
 # === UTILS ===
 def get_log_end_datetime(log_path):
