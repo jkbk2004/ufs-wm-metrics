@@ -1,7 +1,7 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
-5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),36,34,20,80,24,25,106,42
-e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),63,35,21,25,24,25,60,35
-688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),36,37,20,25,24,28,88,46
+5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),36,34,20,80,,25,106,42
+e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),63,35,21,25,,25,60,35
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),36,37,20,25,,28,88,46
 7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),38,36,20,77,24,28,73,41
 d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),38,36,20,77,24,28,73,41
 118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),37,28,22,24,24,27,70,46
@@ -12,27 +12,27 @@ a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync chec
 61e54d9b,2025-08-11,Add two-way ocean-wave coupling feature to the HAFS applications (#2584),36,34,18,24,24,29,88,46
 ce74044c,2025-08-06,"Create a user-friendly ""process model"" testing capability + update MOM6 to its main repo. 20250801 commit #2849 (#2719)",67,35,18,51,23,29,81,43
 d820b67f,2025-08-01,Update GOCART to v2.4.3 (#2819),34,39,18,23,23,27,84,47
-5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),34,35,18,24,57,74,64,52
+5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),34,35,18,24,,74,64,52
 e39a250c,2025-07-24,Update FV3 hash to include UPP ss192/Ursa updates (#2814),35,34,19,82,57,26,89,48
 8b52797d,2025-07-21,"Combination of 2684,2707,2771 (MERRA2 3-hr, photochem diag, prog closure SFS) (#2813)",35,33,18,25,60,25,83,47
 93d51aef,2025-07-17,Exporting Canopy Variables from AQM to Facilitate Sub-Canopy Effects in FV3 and CCPP (#2630),35,41,17,85,53,26,132,53
 c5b3a3c8,2025-07-14,GFDLMP-v3 and TEMPO MP microphysics (#2503),35,34,18,25,51,26,76,53
 f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),36,150,18,31,49,26,57,43
 0e960577,2025-07-09,"Combination #2777 (maintask writes CMEPS restart log), #2779 (FV3 CI/CD), and fix RT if statement blocks (#2795)",35,188,17,23,56,64,54,48
-065def80,2025-07-07,Port UFS-WM to Ursa (#2471),70,28,18,25,57,28,50,46
+065def80,2025-07-07,Port UFS-WM to Ursa (#2471),70,28,18,25,,28,50,46
 995c51d1,2025-07-03,Upgrade UFS-WM to spack-stack/1.9.2 (#2650),70,28,18,20,57,,50,46
 1f0ab432,2025-07-01,Reduce WW3 memory use (#2624),67,26,20,25,47,,73,51
 8f8fddc8,2025-06-30,Bring in scale-aware 3DTKE related changes for GFS TKE EDMF PBL scheme #2734; Add option in GFS PBL to use liquid/ice potential temperature in local mixing #2763; Update MOM6 to its main repo. 20250527 commit #2757; Mom6 025 warmstart option #2761 (#2734),111,30,20,89,45,,63,51
 24d8dfd4,2025-06-26,Slight modification in orographic gravity wave drag (OGWD) scheme (#2752),57,25,18,25,50,,74,46
 5750b9e3,2025-06-20,gcycle update (#2747),130,35,18,32,52,,52,49
 a9999828,2025-06-12,Add a new parameter in dycore to control cutoff level for implicit RF  (#2730),186,35,19,27,46,,64,47
-9193010a,2025-06-06,"In Noah-MP, set zero for canopy liquid and canopy ice over glacier  (#2723)",118,33,18,1745,46,,48,53
-43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),52,35,17,26,46,,59,45
+9193010a,2025-06-06,"In Noah-MP, set zero for canopy liquid and canopy ice over glacier  (#2723)",118,33,18,1745,,,48,53
+43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),52,,,26,,,,
 f22b2e11,2025-06-02,Bug fix for surface roughness calculation over lakes and sea ice points when wave model is turned on (#2739),52,35,17,26,46,,59,45
 aebf9781,2025-05-27,Fix bug to improve wave initialization by saving location/weights for point output (#2737),67,35,18,32,44,,50,44
 4cbe50f4,2025-05-23,"Add idealized, regional tropical cyclone test to tests-dev (#2693)",72,33,18,27,46,,54,55
 269e181a,2025-05-23,Add GFSv17 IAU restart tests without waves + Add tags to stoch physics int variables + Fix filepath in user's guide (#2691),72,33,18,27,46,,54,55
-68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",105,44,18,52,49,,87,57
+68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",,44,,52,,,,
 1c5a9f12,2025-05-09,"Add ""ultra low"" coupled configurations to RTs (Reopen #2564); update inputdata; clean up misc items in multiple test configurations (#2663)",105,36,18,23,49,,87,57
 aba31a4e,2025-05-06,Resolve miscellaneous WM issues and update documentation (#2633),,,,,,,,
 b81282e5,2025-05-05,Switch to vector remapping and bilinear interpolation for global coupled configurations (#2690),,,,,,,,

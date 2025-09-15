@@ -16,7 +16,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hafs_global_storm_following_1nest_atm
-- Core hour anomalies: 5
+- Core hour anomalies: 4
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -41,7 +41,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hafs_regional_atm_ocn_wav
-- Core hour anomalies: 50
+- Core hour anomalies: 49
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -51,7 +51,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hafs_regional_atm_wav
-- Core hour anomalies: 73
+- Core hour anomalies: 65
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -71,7 +71,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hafs_regional_storm_following_1nest_atm_ocn_debug
-- Core hour anomalies: 20
+- Core hour anomalies: 22
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 

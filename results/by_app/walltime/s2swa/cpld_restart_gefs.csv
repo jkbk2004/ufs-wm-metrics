@@ -27,12 +27,12 @@ f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),477,427,,403
 5750b9e3,2025-06-20,gcycle update (#2747),412,314,224,374,,,512,515
 a9999828,2025-06-12,Add a new parameter in dycore to control cutoff level for implicit RF  (#2730),442,312,224,339,,,533,503
 9193010a,2025-06-06,"In Noah-MP, set zero for canopy liquid and canopy ice over glacier  (#2723)",457,335,223,337,,,509,503
-43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),396,846,224,361,,,502,506
+43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),396,,,361,,,,
 f22b2e11,2025-06-02,Bug fix for surface roughness calculation over lakes and sea ice points when wave model is turned on (#2739),396,846,224,361,,,502,506
 aebf9781,2025-05-27,Fix bug to improve wave initialization by saving location/weights for point output (#2737),490,357,223,329,,,497,507
 4cbe50f4,2025-05-23,"Add idealized, regional tropical cyclone test to tests-dev (#2693)",444,315,218,411,,,530,522
 269e181a,2025-05-23,Add GFSv17 IAU restart tests without waves + Add tags to stoch physics int variables + Fix filepath in user's guide (#2691),444,315,218,411,,,530,522
-68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",440,322,236,411,,,564,495
+68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",,322,,411,,,,
 1c5a9f12,2025-05-09,"Add ""ultra low"" coupled configurations to RTs (Reopen #2564); update inputdata; clean up misc items in multiple test configurations (#2663)",440,329,236,381,,,564,495
 aba31a4e,2025-05-06,Resolve miscellaneous WM issues and update documentation (#2633),586,351,222,350,,,549,477
 b81282e5,2025-05-05,Switch to vector remapping and bilinear interpolation for global coupled configurations (#2690),586,351,222,343,,,549,477
@@ -45,7 +45,7 @@ c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),3
 7cc588ae,2025-04-16,Add PIO configuration variables for CMEPS + Update CCPP framework and physics CMakeLists.txt; forward ccpp-framework to HEAD of main #2659 (#2695),407,353,223,376,,,554,495
 9b9a6304,2025-04-11,Memcheck fixes (#2655),413,351,225,301,,,508,490
 4e75e7b4,2025-04-10,Update upp submodule to the latest UPP (#2682),401,370,218,342,,,525,485
-69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),409,379,224,360,,,520,484
+69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),409,379,,360,,,520,484
 0d1af3e3,2025-04-02,"Convert GFS DDTs from blocked data structures to contiguous arrays: Part Deux  + CCPP updates in fv3atm/ccpp-physics: split physics in two groups, reset GFS_interstitial DDT in CCPP_driver.F90 #2651 + Hera move spack-stack to /contrib #2579 (#2610)",421,354,224,354,,,507,487
 6ece76a2,2025-03-28,Update WW3  by merging develop  as of 2025-03-20 (#2669),405,352,229,385,,,495,483
 c5f801e4,2025-03-27,Sync CDEPS and CMEPS to ESCOMP (#2664),402,368,225,399,,,528,480

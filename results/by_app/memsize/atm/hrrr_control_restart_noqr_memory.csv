@@ -27,7 +27,7 @@ f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),,766,,757948
 5750b9e3,2025-06-20,gcycle update (#2747),,768,,760764,,,,
 a9999828,2025-06-12,Add a new parameter in dycore to control cutoff level for implicit RF  (#2730),,768,,761468,,,,
 9193010a,2025-06-06,"In Noah-MP, set zero for canopy liquid and canopy ice over glacier  (#2723)",,767,,760480,,,,
-43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),,769,,760412,,,,
+43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),,,,760412,,,,
 f22b2e11,2025-06-02,Bug fix for surface roughness calculation over lakes and sea ice points when wave model is turned on (#2739),,769,,760412,,,,
 aebf9781,2025-05-27,Fix bug to improve wave initialization by saving location/weights for point output (#2737),,758,,761604,,,,
 4cbe50f4,2025-05-23,"Add idealized, regional tropical cyclone test to tests-dev (#2693)",,759,,760760,,,,

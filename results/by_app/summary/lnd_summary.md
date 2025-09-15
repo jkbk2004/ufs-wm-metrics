@@ -12,6 +12,6 @@
 
 ## datm_cdeps_lnd_gswp3
 - Core hour anomalies: 6
-- Memory anomalies: 56
+- Memory anomalies: 55
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion
 

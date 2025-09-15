@@ -6,12 +6,12 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_CubedSphereGrid
-- Core hour anomalies: 15
+- Core hour anomalies: 14
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_CubedSphereGrid_debug
-- Core hour anomalies: 3
+- Core hour anomalies: 2
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -26,12 +26,12 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_c384
-- Core hour anomalies: 11
+- Core hour anomalies: 10
 - Memory anomalies: 57
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_c384gdas
-- Core hour anomalies: 11
+- Core hour anomalies: 10
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -41,7 +41,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_c48.v2.sfc
-- Core hour anomalies: 14
+- Core hour anomalies: 12
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -56,7 +56,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_csawmg_debug
-- Core hour anomalies: 32
+- Core hour anomalies: 25
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -101,7 +101,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_lndp
-- Core hour anomalies: 9
+- Core hour anomalies: 8
 - Memory anomalies: 54
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -176,8 +176,8 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_restart_noqr_p8
-- Core hour anomalies: 16
-- Memory anomalies: 57
+- Core hour anomalies: 15
+- Memory anomalies: 54
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_restart_p8
@@ -206,7 +206,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## control_wam_debug
-- Core hour anomalies: 21
+- Core hour anomalies: 17
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -231,7 +231,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## conus13km_debug
-- Core hour anomalies: 23
+- Core hour anomalies: 22
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -251,7 +251,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## conus13km_decomp
-- Core hour anomalies: 3
+- Core hour anomalies: 2
 - Memory anomalies: 13
 - Machines: 
 
@@ -266,12 +266,12 @@
 - Machines: 
 
 ## gnv1_c96_no_nest_debug
-- Core hour anomalies: 14
+- Core hour anomalies: 8
 - Memory anomalies: 51
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hrrr_c3_debug
-- Core hour anomalies: 13
+- Core hour anomalies: 7
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -336,7 +336,7 @@
 - Machines: hera, hercules
 
 ## hrrr_gf_debug
-- Core hour anomalies: 10
+- Core hour anomalies: 7
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -371,7 +371,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_clm_lake_debug
-- Core hour anomalies: 3
+- Core hour anomalies: 2
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -381,7 +381,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_control_debug
-- Core hour anomalies: 9
+- Core hour anomalies: 1
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -401,7 +401,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_control_dyn64_phy32_debug
-- Core hour anomalies: 5
+- Core hour anomalies: 3
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
@@ -431,23 +431,23 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_noah_sfcdiff_cires_ugwp_debug
-- Core hour anomalies: 16
+- Core hour anomalies: 11
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_progcld_thompson_debug
-- Core hour anomalies: 11
+- Core hour anomalies: 1
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_restart
 - Core hour anomalies: 9
-- Memory anomalies: 58
+- Memory anomalies: 57
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_restart_dyn32_phy32
 - Core hour anomalies: 7
-- Memory anomalies: 58
+- Memory anomalies: 57
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## rap_sfcdiff
@@ -482,7 +482,7 @@
 
 ## regional_2dwrtdecomp
 - Core hour anomalies: 15
-- Memory anomalies: 57
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## regional_2threads
@@ -491,17 +491,17 @@
 - Machines: acorn, gaeac6, hera, hercules, orion, wcoss2
 
 ## regional_control
-- Core hour anomalies: 13
+- Core hour anomalies: 12
 - Memory anomalies: 57
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## regional_control_faster
 - Core hour anomalies: 11
-- Memory anomalies: 58
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## regional_debug
-- Core hour anomalies: 19
+- Core hour anomalies: 17
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 

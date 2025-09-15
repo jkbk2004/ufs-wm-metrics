@@ -1,7 +1,7 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
-5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),1912,2041,1746,1932,1866,2526,1879,1879
-e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),1907,2038,1747,1924672,1866,2552,1880,1881
-688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),1906,2040,1745,1924336,1866,2539,1876,1879
+5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),1912,2041,1746,1932,,2526,1879,1879
+e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),1907,2038,1747,1924672,,2552,1880,1881
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),1906,2040,1745,1924336,,2539,1876,1879
 7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),1903,2040,1746,1932356,1866,2538,1879,1878
 d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),1903,2040,1746,1932356,1866,2538,1879,1878
 118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),1918,2034,1740,1932,1869,2528700,1882,1877
@@ -12,7 +12,7 @@ a180bbe4,2025-08-15,FV3: Fix Prate_avg and UPP call freq + Fixing repo sync chec
 61e54d9b,2025-08-11,Add two-way ocean-wave coupling feature to the HAFS applications (#2584),1908,2032,1740,1939528,1871784,2537,1882,1878
 ce74044c,2025-08-06,"Create a user-friendly ""process model"" testing capability + update MOM6 to its main repo. 20250801 commit #2849 (#2719)",1902,2033,1743,1926776,1867648,2534,1883,1878
 d820b67f,2025-08-01,Update GOCART to v2.4.3 (#2819),1916,2036,1744,1937532,1873316,2531,1871,1881
-5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),1913,2035,1747792,1926020,1864,2553,1882,1882
+5e13aaf2,2025-07-29,Update DATM meshes and switch to bilinear mapping; Reinstate med restarts for 4 tests after update to ESMF 8.8 (was #2796) (#2733),1913,2035,1747792,1926020,,2553,1882,1882
 e39a250c,2025-07-24,Update FV3 hash to include UPP ss192/Ursa updates (#2814),1913,2035,1742804,1933268,1864,2535,1882,1879
 8b52797d,2025-07-21,"Combination of 2684,2707,2771 (MERRA2 3-hr, photochem diag, prog closure SFS) (#2813)",1918,2041,1748,1925484,1865,2535,1884,1879
 93d51aef,2025-07-17,Exporting Canopy Variables from AQM to Facilitate Sub-Canopy Effects in FV3 and CCPP (#2630),1912,2037,1747,1933820,1865,2526,1882,1882

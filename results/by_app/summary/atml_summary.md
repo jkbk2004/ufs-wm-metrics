@@ -6,7 +6,7 @@
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion
 
 ## control_p8_atmlnd_debug
-- Core hour anomalies: 8
+- Core hour anomalies: 7
 - Memory anomalies: 58
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion
 

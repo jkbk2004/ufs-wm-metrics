@@ -1,7 +1,7 @@
 # Summary for hafs-all
 
 ## hafs_regional_datm_cdeps
-- Core hour anomalies: 55
+- Core hour anomalies: 51
 - Memory anomalies: 48
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
