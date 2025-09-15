@@ -29,6 +29,7 @@ if not os.path.exists("ufs-weather-model"):
 import yaml, csv, matplotlib.pyplot as plt
 from collections import defaultdict
 import statistics
+from trigger import get_latest_hash, has_new_commit, log_trigger_event
 
 # Config
 UFS_REPO = "ufs-weather-model"
@@ -312,13 +313,18 @@ def process_app_yaml(yaml_file, hashes):
     write_summary(app_name, core_matrix, mem_matrix, hashes)
 
 if __name__ == "__main__":
-    hashes = get_recent_hashes()
-    yaml_files = [os.path.join(BY_APP_DIR, f) for f in os.listdir(BY_APP_DIR) if f.endswith(".yaml")]
-    for yaml_file in yaml_files:
-        process_app_yaml(yaml_file, hashes)
-    print(f"\n✅ All results saved to results/by_app/")
+    latest = get_latest_hash()
+    if latest and has_new_commit(latest):
+        log_trigger_event(latest)
+        print("# Proceed with plotting or other logic")
+    
+        hashes = get_recent_hashes()
+        yaml_files = [os.path.join(BY_APP_DIR, f) for f in os.listdir(BY_APP_DIR) if f.endswith(".yaml")]
+        for yaml_file in yaml_files:
+            process_app_yaml(yaml_file, hashes)
+        print(f"\n✅ All results saved to results/by_app/")
 
-    # Clean up cloned repo
-    if os.path.exists(UFS_REPO):
-        print(f"🧹 Removing cloned repo: {UFS_REPO}")
-        subprocess.run(["rm", "-rf", UFS_REPO])
+        # Clean up cloned repo
+        if os.path.exists(UFS_REPO):
+            print(f"🧹 Removing cloned repo: {UFS_REPO}")
+            subprocess.run(["rm", "-rf", UFS_REPO])

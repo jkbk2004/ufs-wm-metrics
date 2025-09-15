@@ -26,10 +26,12 @@ if not os.path.exists("ufs-weather-model"):
     subprocess.run(["git", "clone", "https://github.com/ufs-community/ufs-weather-model.git"])
 
 # Imports
+import re
 import yaml, csv, matplotlib.pyplot as plt
 from collections import defaultdict
 import statistics
 from trigger import get_latest_hash, has_new_commit, log_trigger_event
+from datetime import datetime, timedelta
 
 # Config
 UFS_REPO = "ufs-weather-model"
@@ -37,6 +39,39 @@ BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
 NUM_COMMITS = 50
+DRIFT_THRESHOLD_DAYS = 5
+
+# === UTILS ===
+def get_log_end_datetime(log_path):
+    """Parses the 'Ending Date/Time' from the log file, supporting multiple formats."""
+    if not os.path.exists(log_path):
+        return None
+
+    with open(log_path, "r") as f:
+        for line in f:
+            # Format 1: YYYYMMDD HH:MM:SS
+            match1 = re.search(r"Ending Date/Time:\s*(\d{8})\s+(\d{2}:\d{2}:\d{2})", line)
+            if match1:
+                date_str = match1.group(1)
+                time_str = match1.group(2)
+                return datetime.strptime(f"{date_str} {time_str}", "%Y%m%d %H:%M:%S")
+
+            # Format 2: YYYY-MM-DD HH:MM:SS
+            match2 = re.search(r"Ending Date/Time:\s*(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})", line)
+            if match2:
+                date_str = match2.group(1)
+                time_str = match2.group(2)
+                return datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
+
+    return None  # No valid timestamp found
+
+def is_machine_drifting_by_log_timestamp(log_path, hash_date):
+    log_datetime = get_log_end_datetime(log_path)
+    if log_datetime is None or hash_date is None:
+        return True
+
+    age = hash_date - log_datetime
+    return age > timedelta(days=DRIFT_THRESHOLD_DAYS)
 
 def get_recent_hashes():
     """
@@ -177,11 +212,21 @@ def collect_metrics(hashes, case_map):
     core_matrix = defaultdict(lambda: defaultdict(dict))
     mem_matrix = defaultdict(lambda: defaultdict(dict))
     for h, date, msg in hashes:
-        subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        #subprocess.run(["git", "-C", UFS_REPO, "stash", "push", "-m", "temp before checkout"])
+        subprocess.run(["git", "-C", UFS_REPO, "checkout", h],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        #jkim subprocess.run(["git", "-C", UFS_REPO, "checkout", h])
+        #jkim subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        hash_date = datetime.fromisoformat(date) if isinstance(date, str) else date
+        #jkim print(f"\n[HASH] {h} @ {hash_date.date()}")
         for machine in MACHINES:
             log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
             if not os.path.exists(log_path):
-                continue                
+                continue
+
+            if is_machine_drifting_by_log_timestamp(log_path, hash_date):
+                print(f"[SKIP] {machine}: log timestamp is older than hash by > {DRIFT_THRESHOLD_DAYS} days → drifting.")
+                continue            
+        
             with open(log_path) as f:
                 for raw_line in f:
                     line = sanitize_log_line(raw_line)
