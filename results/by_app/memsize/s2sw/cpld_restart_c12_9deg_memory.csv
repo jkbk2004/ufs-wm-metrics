@@ -1,7 +1,8 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+d3caf3e5,2025-09-15,update mom6 to its main repo. 20250818 commit (#2866),1506,1532,1376,1509,,1486,1396,1395
 5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),1506,1532,1380,1506,,1488,1393,1396
 e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),1507,1530,1379,1507448,,1489,1395,1396
-688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),1508660,1532,1379,1506464,,1489,1393,1395
+688de8eb,2025-09-04,Fix default cdmbgwd settings (#2788),1508660,1532,1379,1506464,1384,1489,1393,1395
 7e711129,2025-09-02,Use container with spack stack 1.9.2 (#2870),1507,1531,1378,1505480,1384,1488,1394,1396
 d4bac232,2025-08-29,MPAS dycore + Atmosphere Generalization & Update RAP tests to FHMAX=12 (#2780),1507,1531,1378,1505480,1384,1488,1394,1396
 118cff46,2025-08-25,Add FV3 grid mask for regional domains to speed up nearest n. interpolation; Update CMEPS and CDEPS (#2862) (#2818),1514,1539,1381,1511,1388,1490076,1393,1397
@@ -19,7 +20,7 @@ e39a250c,2025-07-24,Update FV3 hash to include UPP ss192/Ursa updates (#2814),15
 c5b3a3c8,2025-07-14,GFDLMP-v3 and TEMPO MP microphysics (#2503),1509,1532,1379552,1505712,1387,1489,1398,1397
 f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),1505,1535,1376576,1511040,1389,1490,1399,1397
 0e960577,2025-07-09,"Combination #2777 (maintask writes CMEPS restart log), #2779 (FV3 CI/CD), and fix RT if statement blocks (#2795)",1506,1528,1378,1502,1384,1490,1398,1397
-065def80,2025-07-07,Port UFS-WM to Ursa (#2471),1502,1535,1375,1505096,,1490,1397,1398
+065def80,2025-07-07,Port UFS-WM to Ursa (#2471),1502,1535,1375,1505096,1387,1490,1397,1398
 995c51d1,2025-07-03,Upgrade UFS-WM to spack-stack/1.9.2 (#2650),1502,1535,1375,1502,1387,,1397,1398
 1f0ab432,2025-07-01,Reduce WW3 memory use (#2624),1499,1513,1375,1497792,1390,,1396,1390
 8f8fddc8,2025-06-30,Bring in scale-aware 3DTKE related changes for GFS TKE EDMF PBL scheme #2734; Add option in GFS PBL to use liquid/ice potential temperature in local mixing #2763; Update MOM6 to its main repo. 20250527 commit #2757; Mom6 025 warmstart option #2761 (#2734),1498,1522,1377,1502,1393,,1390,1392
@@ -27,12 +28,12 @@ f9c10462,2025-07-11,Combination of several CCPP-physics PRs (#2790),1505,1535,13
 5750b9e3,2025-06-20,gcycle update (#2747),1501,1515,1378,1506452,1393,,1392,1393
 a9999828,2025-06-12,Add a new parameter in dycore to control cutoff level for implicit RF  (#2730),1501560,1514,1379,1501796,1392,,1391,1393
 9193010a,2025-06-06,"In Noah-MP, set zero for canopy liquid and canopy ice over glacier  (#2723)",1505,1520,1380,1502320,,,1391,1392
-43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),1490,,,1503720,,,,
+43f2c3bd,2025-06-04,Urgent Documentation Update for HSD Capability Announcement  (#2765),1490,1512,1379,1503720,1392,,1391,1392
 f22b2e11,2025-06-02,Bug fix for surface roughness calculation over lakes and sea ice points when wave model is turned on (#2739),1490,1512,1379,1503720,1392,,1391,1392
 aebf9781,2025-05-27,Fix bug to improve wave initialization by saving location/weights for point output (#2737),1500,1509,1380,1499160,1393,,1385,1392
 4cbe50f4,2025-05-23,"Add idealized, regional tropical cyclone test to tests-dev (#2693)",1506,1506,1377,1494340,1394,,1390,1393
 269e181a,2025-05-23,Add GFSv17 IAU restart tests without waves + Add tags to stoch physics int variables + Fix filepath in user's guide (#2691),1506,1506,1377,1494340,1394,,1390,1393
-68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",,1511,,1499176,,,,
+68fd7faa,2025-05-15,"Enable Hera, Hercules Gnu tests: cpld_debug_p8_gnu and cpld_control_p8_gnu + revert MOM6 ISO code #2729 (#2694)",1503,1511,1379,1499176,1394,,1390,1392
 1c5a9f12,2025-05-09,"Add ""ultra low"" coupled configurations to RTs (Reopen #2564); update inputdata; clean up misc items in multiple test configurations (#2663)",1503,1524,1379,1499784,1394,,1390,1392
 aba31a4e,2025-05-06,Resolve miscellaneous WM issues and update documentation (#2633),,,,,,,,
 b81282e5,2025-05-05,Switch to vector remapping and bilinear interpolation for global coupled configurations (#2690),,,,,,,,
@@ -48,4 +49,3 @@ c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),,
 69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),,,,,,,,
 0d1af3e3,2025-04-02,"Convert GFS DDTs from blocked data structures to contiguous arrays: Part Deux  + CCPP updates in fv3atm/ccpp-physics: split physics in two groups, reset GFS_interstitial DDT in CCPP_driver.F90 #2651 + Hera move spack-stack to /contrib #2579 (#2610)",,,,,,,,
 6ece76a2,2025-03-28,Update WW3  by merging develop  as of 2025-03-20 (#2669),,,,,,,,
-c5f801e4,2025-03-27,Sync CDEPS and CMEPS to ESCOMP (#2664),,,,,,,,

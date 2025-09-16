@@ -21,33 +21,33 @@
 - Machines: 
 
 ## cpld_control_noaero_p8
-- Core hour anomalies: 50
-- Memory anomalies: 58
+- Core hour anomalies: 51
+- Memory anomalies: 57
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## cpld_control_nowave_noaero_p8
 - Core hour anomalies: 11
-- Memory anomalies: 57
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## cpld_control_pdlib_p8
-- Core hour anomalies: 25
-- Memory anomalies: 54
+- Core hour anomalies: 24
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## cpld_debug_noaero_p8
 - Core hour anomalies: 2
-- Memory anomalies: 58
+- Memory anomalies: 57
 - Machines: derecho, gaeac6, hera, hercules, orion
 
 ## cpld_debug_pdlib_p8
-- Core hour anomalies: 21
-- Memory anomalies: 53
+- Core hour anomalies: 22
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## cpld_mpi_pdlib_p8
-- Core hour anomalies: 9
-- Memory anomalies: 57
+- Core hour anomalies: 10
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## cpld_restart_c12_9deg
@@ -61,7 +61,7 @@
 - Machines: 
 
 ## cpld_restart_c24_9deg
-- Core hour anomalies: 11
+- Core hour anomalies: 13
 - Memory anomalies: 43
 - Machines: 
 
@@ -72,7 +72,7 @@
 
 ## cpld_restart_pdlib_p8
 - Core hour anomalies: 9
-- Memory anomalies: 57
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## cpld_warmstart_c12_9deg
