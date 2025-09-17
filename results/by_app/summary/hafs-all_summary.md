@@ -2,16 +2,16 @@
 
 ## hafs_regional_datm_cdeps
 - Core hour anomalies: 54
-- Memory anomalies: 47
+- Memory anomalies: 46
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hafs_regional_docn
 - Core hour anomalies: 11
-- Memory anomalies: 57
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## hafs_regional_docn_oisst
 - Core hour anomalies: 11
-- Memory anomalies: 57
+- Memory anomalies: 56
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 

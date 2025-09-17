@@ -1,4 +1,5 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+990ca94c,2025-09-16,Update tests such that LSM and LANDICE are set appropriately (#2772),2166,2183,2029,2170,,2138,2039,2041
 d3caf3e5,2025-09-15,update mom6 to its main repo. 20250818 commit (#2866),2166,2189,2022,2168,,2137,2040,2040
 5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),2155,2193,2030,2165,,2136,2040,2039
 e7ee38e2,2025-09-08,Scale-aware 3DTKE EDMF and TTE-EDMF GFS PBL related updates (#2806),2157,2193,2022,2165880,,2135,2037,2039
@@ -48,4 +49,3 @@ c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),,
 4e75e7b4,2025-04-10,Update upp submodule to the latest UPP (#2682),,,,,,,,
 69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),,,,,,,,
 0d1af3e3,2025-04-02,"Convert GFS DDTs from blocked data structures to contiguous arrays: Part Deux  + CCPP updates in fv3atm/ccpp-physics: split physics in two groups, reset GFS_interstitial DDT in CCPP_driver.F90 #2651 + Hera move spack-stack to /contrib #2579 (#2610)",,,,,,,,
-6ece76a2,2025-03-28,Update WW3  by merging develop  as of 2025-03-20 (#2669),,,,,,,,

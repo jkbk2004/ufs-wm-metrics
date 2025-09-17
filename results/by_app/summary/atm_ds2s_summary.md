@@ -2,6 +2,6 @@
 
 ## atm_ds2s_docn_dice
 - Core hour anomalies: 9
-- Memory anomalies: 57
+- Memory anomalies: 56
 - Machines: derecho, gaeac6, hera, hercules, orion
 
