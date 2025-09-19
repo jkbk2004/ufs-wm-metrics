@@ -2,6 +2,6 @@
 
 ## cpld_regional_atm_fbh
 - Core hour anomalies: 10
-- Memory anomalies: 47
+- Memory anomalies: 46
 - Machines: derecho, gaeac6, hera, hercules, orion
 

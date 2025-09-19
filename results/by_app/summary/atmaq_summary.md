@@ -2,7 +2,7 @@
 
 ## regional_atmaq
 - Core hour anomalies: 14
-- Memory anomalies: 55
+- Memory anomalies: 54
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 
 ## regional_atmaq_canopy
@@ -11,7 +11,7 @@
 - Machines: 
 
 ## regional_atmaq_debug
-- Core hour anomalies: 72
-- Memory anomalies: 56
+- Core hour anomalies: 73
+- Memory anomalies: 55
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 

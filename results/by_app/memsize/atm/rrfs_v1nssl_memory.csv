@@ -1,4 +1,5 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+db4e2d0f,2025-09-18,Replace icplocn2atm (integer) with use_oceanuv (logical); Update cloud build env to remove gnu from stack (was #2842) (#2867),1996,2118,1820,2017,,2648,1968,1972
 990ca94c,2025-09-16,Update tests such that LSM and LANDICE are set appropriately (#2772),1995,2117,1820,2016,,2642,1977,1971
 d3caf3e5,2025-09-15,update mom6 to its main repo. 20250818 commit (#2866),1995,2126,1820,2014,,2646,1968,1975
 5e3a9259,2025-09-10,Introduce tuning parameter for convective cloud liquid for GFSv17/GEFSv13/SFSv1 (#2872),1995,2119,1820,2017,,2668,1976,1974
@@ -48,4 +49,3 @@ c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),1
 9b9a6304,2025-04-11,Memcheck fixes (#2655),1981,1998,1821,2008608,1959,,1966,1967
 4e75e7b4,2025-04-10,Update upp submodule to the latest UPP (#2682),1984,2002,1823,2006208,1960,,1976,1974
 69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),1985,1987,1826,2015636,1961,,1971,1974
-0d1af3e3,2025-04-02,"Convert GFS DDTs from blocked data structures to contiguous arrays: Part Deux  + CCPP updates in fv3atm/ccpp-physics: split physics in two groups, reset GFS_interstitial DDT in CCPP_driver.F90 #2651 + Hera move spack-stack to /contrib #2579 (#2610)",1987,2007,1826,2011856,1959,,1980,1975
