@@ -1,4 +1,5 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+42c7a0ad,2025-09-22,Send surface ocean currents to ATM for SFS test (#2689),1705,1401,1537,1392,,1309,1706,1692
 db4e2d0f,2025-09-18,Replace icplocn2atm (integer) with use_oceanuv (logical); Update cloud build env to remove gnu from stack (was #2842) (#2867),1704,1401,1539,1386,,1310,1686,1695
 990ca94c,2025-09-16,Update tests such that LSM and LANDICE are set appropriately (#2772),1708,1401,1545,1388,,1304,1707,1695
 d3caf3e5,2025-09-15,update mom6 to its main repo. 20250818 commit (#2866),1702,1403,1541,1391,,1310,1707,1695
@@ -48,4 +49,3 @@ c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),1
 7cc588ae,2025-04-16,Add PIO configuration variables for CMEPS + Update CCPP framework and physics CMakeLists.txt; forward ccpp-framework to HEAD of main #2659 (#2695),1698,1671,1545,1557324,1686,,1701,1699
 9b9a6304,2025-04-11,Memcheck fixes (#2655),1696,1709,1536,1556316,1685,,1701,1701
 4e75e7b4,2025-04-10,Update upp submodule to the latest UPP (#2682),1701,1711,1533,1558412,1693,,1705,1702
-69d03840,2025-04-07,Use ESMF Redist instead of Remap for FV3 history bundles with 'cubed_sphere_grid' output grid (#2595),1696,1674,1539,1554308,1680,,1704,1698
