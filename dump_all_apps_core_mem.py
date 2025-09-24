@@ -155,7 +155,9 @@ def load_tests_from_yaml(yaml_path):
             if isinstance(entry, dict):
                 for test_name in entry.keys():
                     for machine in MACHINES:
-                        case_map[test_name].add(machine)
+                        compiler = app_config.get("build", {}).get("compiler", "unknown")
+                        test_id = f"{test_name}_{compiler}"
+                        case_map[test_id].add(machine)
     return case_map
 
 def sanitize_log_line(line):
@@ -358,6 +360,7 @@ def process_app_yaml(yaml_file, hashes):
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
+    print(case_map)
     core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
 
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
