@@ -226,10 +226,20 @@ def collect_metrics(hashes, case_map):
             if is_machine_drifting_by_log_timestamp(log_path, hash_date):
                 print(f"[SKIP] {machine}: log timestamp is older than hash by > {DRIFT_THRESHOLD_DAYS} days → drifting.")
                 continue            
-        
+
+            compiler_from_log = None
             with open(log_path) as f:
                 for raw_line in f:
                     line = sanitize_log_line(raw_line)
+                    if "PASS -- COMPILE" in line or "PASS -- TEST" in line:
+                        match = re.search(r"'([^']+)'", line)
+                        if match:
+                            test_id = match.group(1)
+                            parts = test_id.split("_")
+                            candidate = parts[-1].lower()
+                            if candidate in ["gnu", "intel", "intelllvm"]:
+                                compiler_from_log = candidate
+                                break
                     if "PASS -- TEST" in line and "[" in line and "(" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
@@ -243,7 +253,7 @@ def collect_metrics(hashes, case_map):
                                     mem_matrix[normalized][h][machine] = memory_mb
                         except:
                             continue
-    return core_matrix, mem_matrix
+    return core_matrix, mem_matrix, compiler_from_log
 
 def detect_anomalies(values):
     """
@@ -348,7 +358,7 @@ def process_app_yaml(yaml_file, hashes):
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
-    core_matrix, mem_matrix = collect_metrics(hashes, case_map)
+    core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
 
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
