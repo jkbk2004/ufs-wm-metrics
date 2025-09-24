@@ -2,6 +2,6 @@
 
 ## atm_ds2s_docn_pcice
 - Core hour anomalies: 11
-- Memory anomalies: 54
+- Memory anomalies: 52
 - Machines: acorn, derecho, gaeac6, hera, hercules, orion, wcoss2
 

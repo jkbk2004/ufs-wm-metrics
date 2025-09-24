@@ -1,4 +1,6 @@
 Hash,Date,Message,orion,hera,gaeac6,hercules,derecho,ursa,wcoss2,acorn
+d1f50458,2025-09-23,Automatically add new PRs to WM PR Project board (#2897),1048,950,865,937,,855,1002,1006
+ac8ffeb8,2025-09-23,Update default_vars for stochastic physics settings for global-worfklow. Minor document updates to reflect new HSD container (was #2885). PR template update (was #2891) (#2889),1048,950,865,937,,855,1002,1006
 42c7a0ad,2025-09-22,Send surface ocean currents to ATM for SFS test (#2689),1036,950,865,939,,855,1011,1008
 db4e2d0f,2025-09-18,Replace icplocn2atm (integer) with use_oceanuv (logical); Update cloud build env to remove gnu from stack (was #2842) (#2867),1041,952,869,937,,854,1011,1007
 990ca94c,2025-09-16,Update tests such that LSM and LANDICE are set appropriately (#2772),1034,951,869,944,,879,1012,1005
@@ -47,5 +49,3 @@ ff162f36,2025-05-01,NSSL MP scheme updates + Stochastic Physics CI/CD & Unit Tes
 4f0111b2,2025-04-21,Add CMEPS log file at restart write; IAU Tags for Global Workflow (was #2674) (#2698),1040,835,870,1066272,1007,,1012,1007
 c0d4de3c,2025-04-18,Update mom6 to its main repository 20250411 commit (#2697),1038,834,867,1064028,1002,,1011,1006
 7cc588ae,2025-04-16,Add PIO configuration variables for CMEPS + Update CCPP framework and physics CMakeLists.txt; forward ccpp-framework to HEAD of main #2659 (#2695),1040,849,872,1060352,1003,,1013,1003
-9b9a6304,2025-04-11,Memcheck fixes (#2655),1040,847,871,1060972,1004,,1007,1005
-4e75e7b4,2025-04-10,Update upp submodule to the latest UPP (#2682),1043,815,869,1067064,1008,,1012,1007
