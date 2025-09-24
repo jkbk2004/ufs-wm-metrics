@@ -241,7 +241,6 @@ def collect_metrics(hashes, case_map):
                             candidate = parts[-1].lower()
                             if candidate in ["gnu", "intel", "intelllvm"]:
                                 compiler_from_log = candidate
-                                break
                     if "PASS -- TEST" in line and "[" in line and "(" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
