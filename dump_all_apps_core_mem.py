@@ -32,6 +32,7 @@ from collections import defaultdict
 import statistics
 from trigger import get_latest_hash, has_new_commit, log_trigger_event
 from datetime import datetime, timedelta
+from stats_writer import accumulate_case_stats, write_all_stats_csv
 
 # Config
 UFS_REPO = "ufs-weather-model"
