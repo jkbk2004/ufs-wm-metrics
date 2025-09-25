@@ -38,7 +38,7 @@ UFS_REPO = "ufs-weather-model"
 BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
-NUM_COMMITS = 50
+NUM_COMMITS = 5
 DRIFT_THRESHOLD_DAYS = 7
 
 # === UTILS ===
@@ -244,9 +244,10 @@ def collect_metrics(hashes, case_map):
                     if "PASS -- TEST" in line and "[" in line and "(" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
-                            normalized = normalize_test_name(raw_name)
+                            normalized = raw_name #normalize_test_name(raw_name)
                             core_hour = parse_core_hour(line)
                             memory_mb = parse_memory_mb(line)
+                            #print(raw_name,normalized,log_path,machine)
                             if normalized in case_map and machine in case_map[normalized]:
                                 if core_hour:
                                     core_matrix[normalized][h][machine] = core_hour
@@ -285,8 +286,8 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
         ylabel (str): Label for Y-axis in plots.
     """    
     os.makedirs(out_dir, exist_ok=True)
-    print(out_dir)
     for case, hash_map in matrix.items():
+        print(case)
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
 
         # Fancy Plot
