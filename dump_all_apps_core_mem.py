@@ -333,8 +333,8 @@ def process_app_yaml(yaml_file, hashes):
     case_map = load_tests_from_yaml(yaml_file)
     core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
 
-    walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name, compiler_log)
-    memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name, compiler_log)
+    walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
+    memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
 
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
