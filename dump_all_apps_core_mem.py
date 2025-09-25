@@ -285,6 +285,7 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
         ylabel (str): Label for Y-axis in plots.
     """    
     os.makedirs(out_dir, exist_ok=True)
+    print(out_dir)
     for case, hash_map in matrix.items():
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
 
@@ -329,11 +330,10 @@ def process_app_yaml(yaml_file, hashes):
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
-    print(case_map)
     core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
 
-    walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
-    memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
+    walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name, compiler_log)
+    memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name, compiler_log)
 
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
