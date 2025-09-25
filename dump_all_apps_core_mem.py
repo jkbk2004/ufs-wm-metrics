@@ -33,6 +33,7 @@ import statistics
 from trigger import get_latest_hash, has_new_commit, log_trigger_event
 from datetime import datetime, timedelta
 import shutil
+from stats_writer import accumulate_case_stats, write_all_stats_csv
 
 # Config
 UFS_REPO = "ufs-weather-model"
@@ -360,6 +361,8 @@ def process_app_yaml(yaml_file, hashes):
     case_map = load_tests_from_yaml(yaml_file)
     core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
 
+    accumulate_case_stats(machine_name, case_name, walltimes, memsizes)
+    
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
 
