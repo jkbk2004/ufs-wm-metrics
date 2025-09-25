@@ -287,12 +287,6 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
     os.makedirs(out_dir, exist_ok=True)
     for case, hash_map in matrix.items():
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
-        with open(csv_path, "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["Hash", "Date", "Message"] + MACHINES)
-            for h, date, msg in hashes:
-                row = [h, date, msg] + [hash_map.get(h, {}).get(m, "") for m in MACHINES]
-                writer.writerow(row)
 
         # Fancy Plot
         plt.figure(figsize=(14, 6), dpi=200)
@@ -320,30 +314,6 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
         plt.savefig(png_path)
         plt.close()
 
-def write_summary(app_name, core_matrix, mem_matrix, hashes):
-    """
-    Writes a Markdown summary of anomalies and machine coverage.
-
-    Args:
-        app_name (str): Name of the application.
-        core_matrix (dict): Core hour metrics.
-        mem_matrix (dict): Memory metrics.
-        hashes (list): Commit metadata.
-    """    
-    path = os.path.join(RESULTS_DIR, "summary", f"{app_name}_summary.md")
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w") as f:
-        f.write(f"# Summary for {app_name}\n\n")
-        for case in sorted(core_matrix.keys()):
-            f.write(f"## {case}\n")
-            core_vals = [core_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
-            mem_vals = [mem_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
-            core_anoms = len(detect_anomalies(core_vals))
-            mem_anoms = len(detect_anomalies(mem_vals))
-            f.write(f"- Core hour anomalies: {core_anoms}\n")
-            f.write(f"- Memory anomalies: {mem_anoms}\n")
-            f.write(f"- Machines: {', '.join(sorted(core_matrix[case].get(hashes[-1][0], {}).keys()))}\n\n")
-
 def process_app_yaml(yaml_file, hashes):
     """
     Processes a single app YAML file:
@@ -367,7 +337,6 @@ def process_app_yaml(yaml_file, hashes):
 
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
-    write_summary(app_name, core_matrix, mem_matrix, hashes)
 
 if __name__ == "__main__":
     latest = get_latest_hash()
