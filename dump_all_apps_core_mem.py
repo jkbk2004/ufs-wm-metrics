@@ -32,16 +32,44 @@ from collections import defaultdict
 import statistics
 from trigger import get_latest_hash, has_new_commit, log_trigger_event
 from datetime import datetime, timedelta
+import shutil
 
 # Config
 UFS_REPO = "ufs-weather-model"
 BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
-NUM_COMMITS = 5
-DRIFT_THRESHOLD_DAYS = 7
+NUM_COMMITS = 50
+DRIFT_THRESHOLD_DAYS = 5
 
 # === UTILS ===
+def sort_pngs_by_compiler(base_dir="results/by_app", compilers=["intelllvm", "gnu", "intel"]):
+    for metric in ["walltime", "memsize"]:
+        metric_dir = os.path.join(base_dir, metric)
+        if not os.path.isdir(metric_dir):
+            continue
+
+        for app in os.listdir(metric_dir):
+            app_dir = os.path.join(metric_dir, app)
+            if not os.path.isdir(app_dir):
+                continue
+
+            for fname in os.listdir(app_dir):
+                if not fname.endswith(".png"):
+                    continue
+
+                for compiler in compilers:
+                    if compiler in fname:
+                        # Target: results/by_app/{metric}/{app}/{compiler}/
+                        target_dir = os.path.join(base_dir, metric, app, compiler)
+                        os.makedirs(target_dir, exist_ok=True)
+
+                        src = os.path.join(app_dir, fname)
+                        dst = os.path.join(target_dir, fname)
+                        shutil.move(src, dst)
+                        print(f"Moved {fname} → {metric}/{app}/{compiler}")
+                        break
+                
 def get_log_end_datetime(log_path):
     """Parses the 'Ending Date/Time' from the log file, supporting multiple formats."""
     if not os.path.exists(log_path):
@@ -287,7 +315,6 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
     """    
     os.makedirs(out_dir, exist_ok=True)
     for case, hash_map in matrix.items():
-        print(case)
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
 
         # Fancy Plot
@@ -339,6 +366,8 @@ def process_app_yaml(yaml_file, hashes):
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
 
+    sort_pngs_by_compiler()
+    
 if __name__ == "__main__":
     latest = get_latest_hash()
     if latest and has_new_commit(latest):

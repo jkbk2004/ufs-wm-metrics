@@ -1,2 +1,0 @@
-# Summary for ng-godas
-
