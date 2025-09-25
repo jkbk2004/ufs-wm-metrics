@@ -32,7 +32,7 @@ from collections import defaultdict
 import statistics
 from trigger import get_latest_hash, has_new_commit, log_trigger_event
 from datetime import datetime, timedelta
-from stats_writer import accumulate_case_stats, write_all_stats_csv
+import shutil
 
 # Config
 UFS_REPO = "ufs-weather-model"
@@ -40,9 +40,36 @@ BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
 NUM_COMMITS = 50
-DRIFT_THRESHOLD_DAYS = 7
+DRIFT_THRESHOLD_DAYS = 5
 
 # === UTILS ===
+def sort_pngs_by_compiler(base_dir="results/by_app", compilers=["intelllvm", "gnu", "intel"]):
+    for metric in ["walltime", "memsize"]:
+        metric_dir = os.path.join(base_dir, metric)
+        if not os.path.isdir(metric_dir):
+            continue
+
+        for app in os.listdir(metric_dir):
+            app_dir = os.path.join(metric_dir, app)
+            if not os.path.isdir(app_dir):
+                continue
+
+            for fname in os.listdir(app_dir):
+                if not fname.endswith(".png"):
+                    continue
+
+                for compiler in compilers:
+                    if compiler in fname:
+                        # Target: results/by_app/{metric}/{app}/{compiler}/
+                        target_dir = os.path.join(base_dir, metric, app, compiler)
+                        os.makedirs(target_dir, exist_ok=True)
+
+                        src = os.path.join(app_dir, fname)
+                        dst = os.path.join(target_dir, fname)
+                        shutil.move(src, dst)
+                        print(f"Moved {fname} → {metric}/{app}/{compiler}")
+                        break
+
 def get_log_end_datetime(log_path):
     """Parses the 'Ending Date/Time' from the log file, supporting multiple formats."""
     if not os.path.exists(log_path):
@@ -98,7 +125,7 @@ def normalize_test_name(name):
 
     Returns:
         str: Normalized test name.
-    """    
+    """
     for suffix in ["_intel", "_gnu", "_pgi", "_nvhpc"]:
         if name.endswith(suffix):
             return name[: -len(suffix)]
@@ -113,7 +140,7 @@ def parse_core_hour(line):
 
     Returns:
         int or None: Core hour in seconds, or None if not found.
-    """    
+    """
     try:
         time_block = line.split("[")[1].split("]")[0]
         core_str = time_block.split(",")[1].strip()
@@ -131,7 +158,7 @@ def parse_memory_mb(line):
 
     Returns:
         int or None: Memory usage in MB, or None if not found.
-    """    
+    """
     try:
         mem_str = line.split("(")[1].split("MB")[0].strip()
         return int(mem_str)
@@ -147,7 +174,7 @@ def load_tests_from_yaml(yaml_path):
 
     Returns:
         dict: Mapping of normalized test names to sets of machines.
-    """    
+    """
     with open(yaml_path) as f:
         config = yaml.safe_load(f)
     case_map = defaultdict(set)
@@ -156,7 +183,9 @@ def load_tests_from_yaml(yaml_path):
             if isinstance(entry, dict):
                 for test_name in entry.keys():
                     for machine in MACHINES:
-                        case_map[test_name].add(machine)
+                        compiler = app_config.get("build", {}).get("compiler", "unknown")
+                        test_id = f"{test_name}_{compiler}"
+                        case_map[test_id].add(machine)
     return case_map
 
 def sanitize_log_line(line):
@@ -209,7 +238,7 @@ def collect_metrics(hashes, case_map):
     Returns:
         tuple: (core_matrix, mem_matrix) as nested dicts:
                test_name → commit_hash → machine → metric_value
-    """    
+    """
     core_matrix = defaultdict(lambda: defaultdict(dict))
     mem_matrix = defaultdict(lambda: defaultdict(dict))
     for h, date, msg in hashes:
@@ -226,17 +255,27 @@ def collect_metrics(hashes, case_map):
 
             if is_machine_drifting_by_log_timestamp(log_path, hash_date):
                 print(f"[SKIP] {machine}: log timestamp is older than hash by > {DRIFT_THRESHOLD_DAYS} days → drifting.")
-                continue            
-        
+                continue
+
+            compiler_from_log = None
             with open(log_path) as f:
                 for raw_line in f:
                     line = sanitize_log_line(raw_line)
+                    if "PASS -- COMPILE" in line or "PASS -- TEST" in line:
+                        match = re.search(r"'([^']+)'", line)
+                        if match:
+                            test_id = match.group(1)
+                            parts = test_id.split("_")
+                            candidate = parts[-1].lower()
+                            if candidate in ["gnu", "intel", "intelllvm"]:
+                                compiler_from_log = candidate
                     if "PASS -- TEST" in line and "[" in line and "(" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
-                            normalized = normalize_test_name(raw_name)
+                            normalized = raw_name #normalize_test_name(raw_name)
                             core_hour = parse_core_hour(line)
                             memory_mb = parse_memory_mb(line)
+                            #print(raw_name,normalized,log_path,machine)
                             if normalized in case_map and machine in case_map[normalized]:
                                 if core_hour:
                                     core_matrix[normalized][h][machine] = core_hour
@@ -244,7 +283,7 @@ def collect_metrics(hashes, case_map):
                                     mem_matrix[normalized][h][machine] = memory_mb
                         except:
                             continue
-    return core_matrix, mem_matrix
+    return core_matrix, mem_matrix, compiler_from_log
 
 def detect_anomalies(values):
     """
@@ -255,7 +294,7 @@ def detect_anomalies(values):
 
     Returns:
         set: Indices of values that deviate >2 standard deviations from median.
-    """    
+    """
     clean = [v for v in values if isinstance(v, (int, float))]
     if len(clean) < 5:
         return set()
@@ -273,16 +312,10 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
         out_dir (str): Output directory for CSV and plots.
         suffix (str): Optional suffix for filenames.
         ylabel (str): Label for Y-axis in plots.
-    """    
+    """
     os.makedirs(out_dir, exist_ok=True)
     for case, hash_map in matrix.items():
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
-        with open(csv_path, "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["Hash", "Date", "Message"] + MACHINES)
-            for h, date, msg in hashes:
-                row = [h, date, msg] + [hash_map.get(h, {}).get(m, "") for m in MACHINES]
-                writer.writerow(row)
 
         # Fancy Plot
         plt.figure(figsize=(14, 6), dpi=200)
@@ -310,30 +343,6 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
         plt.savefig(png_path)
         plt.close()
 
-def write_summary(app_name, core_matrix, mem_matrix, hashes):
-    """
-    Writes a Markdown summary of anomalies and machine coverage.
-
-    Args:
-        app_name (str): Name of the application.
-        core_matrix (dict): Core hour metrics.
-        mem_matrix (dict): Memory metrics.
-        hashes (list): Commit metadata.
-    """    
-    path = os.path.join(RESULTS_DIR, "summary", f"{app_name}_summary.md")
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w") as f:
-        f.write(f"# Summary for {app_name}\n\n")
-        for case in sorted(core_matrix.keys()):
-            f.write(f"## {case}\n")
-            core_vals = [core_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
-            mem_vals = [mem_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
-            core_anoms = len(detect_anomalies(core_vals))
-            mem_anoms = len(detect_anomalies(mem_vals))
-            f.write(f"- Core hour anomalies: {core_anoms}\n")
-            f.write(f"- Memory anomalies: {mem_anoms}\n")
-            f.write(f"- Machines: {', '.join(sorted(core_matrix[case].get(hashes[-1][0], {}).keys()))}\n\n")
-
 def process_app_yaml(yaml_file, hashes):
     """
     Processes a single app YAML file:
@@ -345,25 +354,26 @@ def process_app_yaml(yaml_file, hashes):
     Args:
         yaml_file (str): Path to the app-specific YAML config.
         hashes (list): Commit metadata.
-    """    
+    """
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
-    core_matrix, mem_matrix = collect_metrics(hashes, case_map)
+    core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
 
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
 
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
-    write_summary(app_name, core_matrix, mem_matrix, hashes)
+
+    sort_pngs_by_compiler()
 
 if __name__ == "__main__":
     latest = get_latest_hash()
     if latest and has_new_commit(latest):
         log_trigger_event(latest)
         print("# Proceed with plotting or other logic")
-    
+
         hashes = get_recent_hashes()
         yaml_files = [os.path.join(BY_APP_DIR, f) for f in os.listdir(BY_APP_DIR) if f.endswith(".yaml")]
         for yaml_file in yaml_files:
