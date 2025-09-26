@@ -26,10 +26,13 @@ if not os.path.exists("ufs-weather-model"):
     subprocess.run(["git", "clone", "https://github.com/ufs-community/ufs-weather-model.git"])
 
 # Imports
+import re
 import yaml, csv, matplotlib.pyplot as plt
 from collections import defaultdict
 import statistics
 from trigger import get_latest_hash, has_new_commit, log_trigger_event
+from datetime import datetime, timedelta
+import shutil
 
 # Config
 UFS_REPO = "ufs-weather-model"
@@ -37,6 +40,87 @@ BY_APP_DIR = "tests-yamls/configs/by_app"
 RESULTS_DIR = "results/by_app"
 MACHINES = ["orion", "hera", "gaeac6", "hercules", "derecho", "ursa", "wcoss2", "acorn"]
 NUM_COMMITS = 50
+DRIFT_THRESHOLD_DAYS = 5
+
+# === UTILS ===
+# === Save summary_df by case and compiler ===
+import os
+
+def save_summary_by_case_compiler(summary_df, output_dir="results/stats"):
+    """
+    Saves grouped summary stats to CSV files by (test_name, compiler),
+    including all machine rows per group.
+
+    Args:
+        summary_df (pd.DataFrame): Output from collect_metrics().
+        output_dir (str): Directory to save CSV files.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    grouped = summary_df.groupby(['test_name', 'compiler'])
+
+    for (test_name, compiler), df_group in grouped:
+        safe_name = f"{test_name}".replace("/", "_").replace(" ", "_")
+        file_path = os.path.join(output_dir, f"{safe_name}.csv")
+        df_group.to_csv(file_path, index=False)
+        print(f"[WRITE] {file_path} ({len(df_group)} rows)")
+
+def sort_pngs_by_compiler(base_dir="results/by_app", compilers=["intelllvm", "gnu", "intel"]):
+    for metric in ["walltime", "memsize"]:
+        metric_dir = os.path.join(base_dir, metric)
+        if not os.path.isdir(metric_dir):
+            continue
+
+        for app in os.listdir(metric_dir):
+            app_dir = os.path.join(metric_dir, app)
+            if not os.path.isdir(app_dir):
+                continue
+
+            for fname in os.listdir(app_dir):
+                if not fname.endswith(".png"):
+                    continue
+
+                for compiler in compilers:
+                    if compiler in fname:
+                        # Target: results/by_app/{metric}/{app}/{compiler}/
+                        target_dir = os.path.join(base_dir, metric, app, compiler)
+                        os.makedirs(target_dir, exist_ok=True)
+
+                        src = os.path.join(app_dir, fname)
+                        dst = os.path.join(target_dir, fname)
+                        shutil.move(src, dst)
+                        print(f"Moved {fname} → {metric}/{app}/{compiler}")
+                        break
+                
+def get_log_end_datetime(log_path):
+    """Parses the 'Ending Date/Time' from the log file, supporting multiple formats."""
+    if not os.path.exists(log_path):
+        return None
+
+    with open(log_path, "r") as f:
+        for line in f:
+            # Format 1: YYYYMMDD HH:MM:SS
+            match1 = re.search(r"Ending Date/Time:\s*(\d{8})\s+(\d{2}:\d{2}:\d{2})", line)
+            if match1:
+                date_str = match1.group(1)
+                time_str = match1.group(2)
+                return datetime.strptime(f"{date_str} {time_str}", "%Y%m%d %H:%M:%S")
+
+            # Format 2: YYYY-MM-DD HH:MM:SS
+            match2 = re.search(r"Ending Date/Time:\s*(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})", line)
+            if match2:
+                date_str = match2.group(1)
+                time_str = match2.group(2)
+                return datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
+
+    return None  # No valid timestamp found
+
+def is_machine_drifting_by_log_timestamp(log_path, hash_date):
+    log_datetime = get_log_end_datetime(log_path)
+    if log_datetime is None or hash_date is None:
+        return True
+
+    age = hash_date - log_datetime
+    return age > timedelta(days=DRIFT_THRESHOLD_DAYS)
 
 def get_recent_hashes():
     """
@@ -120,7 +204,9 @@ def load_tests_from_yaml(yaml_path):
             if isinstance(entry, dict):
                 for test_name in entry.keys():
                     for machine in MACHINES:
-                        case_map[test_name].add(machine)
+                        compiler = app_config.get("build", {}).get("compiler", "unknown")
+                        test_id = f"{test_name}_{compiler}"
+                        case_map[test_id].add(machine)
     return case_map
 
 def sanitize_log_line(line):
@@ -162,7 +248,102 @@ def sanitize_log_line(line):
 
     return line
 
+import pandas as pd
+from collections import defaultdict
+
 def collect_metrics(hashes, case_map):
+    """
+    Collects core hour and memory metrics from logs across commits and machines.
+
+    Args:
+        hashes (list): List of commit metadata.
+        case_map (dict): Mapping of test names to machines.
+
+    Returns:
+        tuple: (core_matrix, mem_matrix, compiler_from_log, summary_df)
+               core_matrix[test_name][hash][machine] → core_hour
+               mem_matrix[test_name][hash][machine] → memory_mb
+               summary_df: grouped stats by (test_name, machine, compiler)
+    """    
+    core_matrix = defaultdict(lambda: defaultdict(dict))
+    mem_matrix = defaultdict(lambda: defaultdict(dict))
+    compiler_matrix = defaultdict(lambda: defaultdict(dict))  # optional: track compiler per test/hash/machine
+
+    for h, date, msg in hashes:
+        subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        hash_date = datetime.fromisoformat(date) if isinstance(date, str) else date
+
+        for machine in MACHINES:
+            log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
+            if not os.path.exists(log_path):
+                continue
+
+            if is_machine_drifting_by_log_timestamp(log_path, hash_date):
+                print(f"[SKIP] {machine}: log timestamp is older than hash by > {DRIFT_THRESHOLD_DAYS} days → drifting.")
+                continue            
+
+            compiler_from_log = None
+            with open(log_path) as f:
+                for raw_line in f:
+                    line = sanitize_log_line(raw_line)
+                    if "PASS -- COMPILE" in line or "PASS -- TEST" in line:
+                        match = re.search(r"'([^']+)'", line)
+                        if match:
+                            test_id = match.group(1)
+                            parts = test_id.split("_")
+                            candidate = parts[-1].lower()
+                            if candidate in ["gnu", "intel", "intelllvm"]:
+                                compiler_from_log = candidate
+                    if "PASS -- TEST" in line and "[" in line and "(" in line:
+                        try:
+                            raw_name = line.split("TEST '")[1].split("'")[0]
+                            normalized = raw_name  # normalize_test_name(raw_name) if needed
+                            core_hour = parse_core_hour(line)
+                            memory_mb = parse_memory_mb(line)
+                            if normalized in case_map and machine in case_map[normalized]:
+                                if core_hour:
+                                    core_matrix[normalized][h][machine] = core_hour
+                                if memory_mb:
+                                    mem_matrix[normalized][h][machine] = memory_mb
+                                if compiler_from_log:
+                                    compiler_matrix[normalized][h][machine] = compiler_from_log
+                        except:
+                            continue
+
+    # Compute summary stats
+    stats_rows = []
+    for test_name in core_matrix:
+        for h in core_matrix[test_name]:
+            for machine in core_matrix[test_name][h]:
+                core = core_matrix[test_name][h][machine]
+                mem = mem_matrix[test_name].get(h, {}).get(machine)
+                compiler = compiler_matrix[test_name].get(h, {}).get(machine, "unknown")
+                stats_rows.append({
+                    'test_name': test_name,
+                    'hash': h,
+                    'machine': machine,
+                    'compiler': compiler,
+                    'core': core,
+                    'mem': mem
+                })
+
+    df = pd.DataFrame(stats_rows)
+    summary_df = df.groupby(['test_name', 'machine', 'compiler']).agg(
+        core_mean=('core', 'mean'),
+        core_std=('core', 'std'),
+        core_min=('core', 'min'),
+        core_max=('core', 'max'),
+        mem_mean=('mem', 'mean'),
+        mem_std=('mem', 'std'),
+        mem_min=('mem', 'min'),
+        mem_max=('mem', 'max'),
+        n_hashes=('hash', 'nunique')
+    ).reset_index()
+
+    return core_matrix, mem_matrix, compiler_from_log, summary_df
+
+
+def _collect_metrics(hashes, case_map):
     """
     Collects core hour and memory metrics from logs across commits and machines.
 
@@ -177,20 +358,40 @@ def collect_metrics(hashes, case_map):
     core_matrix = defaultdict(lambda: defaultdict(dict))
     mem_matrix = defaultdict(lambda: defaultdict(dict))
     for h, date, msg in hashes:
-        subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        #subprocess.run(["git", "-C", UFS_REPO, "stash", "push", "-m", "temp before checkout"])
+        subprocess.run(["git", "-C", UFS_REPO, "checkout", h],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        #jkim subprocess.run(["git", "-C", UFS_REPO, "checkout", h])
+        #jkim subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        hash_date = datetime.fromisoformat(date) if isinstance(date, str) else date
+        #jkim print(f"\n[HASH] {h} @ {hash_date.date()}")
         for machine in MACHINES:
             log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
             if not os.path.exists(log_path):
-                continue                
+                continue
+
+            if is_machine_drifting_by_log_timestamp(log_path, hash_date):
+                print(f"[SKIP] {machine}: log timestamp is older than hash by > {DRIFT_THRESHOLD_DAYS} days → drifting.")
+                continue            
+
+            compiler_from_log = None
             with open(log_path) as f:
                 for raw_line in f:
                     line = sanitize_log_line(raw_line)
+                    if "PASS -- COMPILE" in line or "PASS -- TEST" in line:
+                        match = re.search(r"'([^']+)'", line)
+                        if match:
+                            test_id = match.group(1)
+                            parts = test_id.split("_")
+                            candidate = parts[-1].lower()
+                            if candidate in ["gnu", "intel", "intelllvm"]:
+                                compiler_from_log = candidate
                     if "PASS -- TEST" in line and "[" in line and "(" in line:
                         try:
                             raw_name = line.split("TEST '")[1].split("'")[0]
-                            normalized = normalize_test_name(raw_name)
+                            normalized = raw_name #normalize_test_name(raw_name)
                             core_hour = parse_core_hour(line)
                             memory_mb = parse_memory_mb(line)
+                            #print(raw_name,normalized,log_path,machine)
                             if normalized in case_map and machine in case_map[normalized]:
                                 if core_hour:
                                     core_matrix[normalized][h][machine] = core_hour
@@ -198,7 +399,7 @@ def collect_metrics(hashes, case_map):
                                     mem_matrix[normalized][h][machine] = memory_mb
                         except:
                             continue
-    return core_matrix, mem_matrix
+    return core_matrix, mem_matrix, compiler_from_log
 
 def detect_anomalies(values):
     """
@@ -231,12 +432,6 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
     os.makedirs(out_dir, exist_ok=True)
     for case, hash_map in matrix.items():
         csv_path = os.path.join(out_dir, f"{case}{suffix}.csv")
-        with open(csv_path, "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["Hash", "Date", "Message"] + MACHINES)
-            for h, date, msg in hashes:
-                row = [h, date, msg] + [hash_map.get(h, {}).get(m, "") for m in MACHINES]
-                writer.writerow(row)
 
         # Fancy Plot
         plt.figure(figsize=(14, 6), dpi=200)
@@ -264,30 +459,6 @@ def write_csv_and_plot(matrix, hashes, out_dir, suffix="", ylabel=""):
         plt.savefig(png_path)
         plt.close()
 
-def write_summary(app_name, core_matrix, mem_matrix, hashes):
-    """
-    Writes a Markdown summary of anomalies and machine coverage.
-
-    Args:
-        app_name (str): Name of the application.
-        core_matrix (dict): Core hour metrics.
-        mem_matrix (dict): Memory metrics.
-        hashes (list): Commit metadata.
-    """    
-    path = os.path.join(RESULTS_DIR, "summary", f"{app_name}_summary.md")
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w") as f:
-        f.write(f"# Summary for {app_name}\n\n")
-        for case in sorted(core_matrix.keys()):
-            f.write(f"## {case}\n")
-            core_vals = [core_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
-            mem_vals = [mem_matrix[case].get(h[0], {}).get(m) for h in hashes for m in MACHINES]
-            core_anoms = len(detect_anomalies(core_vals))
-            mem_anoms = len(detect_anomalies(mem_vals))
-            f.write(f"- Core hour anomalies: {core_anoms}\n")
-            f.write(f"- Memory anomalies: {mem_anoms}\n")
-            f.write(f"- Machines: {', '.join(sorted(core_matrix[case].get(hashes[-1][0], {}).keys()))}\n\n")
-
 def process_app_yaml(yaml_file, hashes):
     """
     Processes a single app YAML file:
@@ -303,15 +474,17 @@ def process_app_yaml(yaml_file, hashes):
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
-    core_matrix, mem_matrix = collect_metrics(hashes, case_map)
-
+    core_matrix, mem_matrix, compiler_log, summary_df = collect_metrics(hashes, case_map)
+    save_summary_by_case_compiler(summary_df)
+    
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
 
     write_csv_and_plot(core_matrix, hashes, walltime_dir, "", "Core Hours (seconds)")
     write_csv_and_plot(mem_matrix, hashes, memsize_dir, "_memory", "Max Memory (MB)")
-    write_summary(app_name, core_matrix, mem_matrix, hashes)
 
+    sort_pngs_by_compiler()
+    
 if __name__ == "__main__":
     latest = get_latest_hash()
     if latest and has_new_commit(latest):
