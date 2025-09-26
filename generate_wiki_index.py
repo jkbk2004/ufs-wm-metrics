@@ -2,12 +2,9 @@ import os
 
 WIKI_PATH = "wiki/Regression-Metrics-by-App.md"
 WALLTIME_ROOT = "results/by_app/walltime"
-STATS_ROOT = "results/by_app/stats"
+STATS_ROOT = "results/stats"  # ✅ updated path
 
 def get_walltime_links():
-    """
-    Scans results/by_app/walltime and returns a list of (app, compiler, relative_path)
-    """
     links = []
     for app in sorted(os.listdir(WALLTIME_ROOT)):
         app_path = os.path.join(WALLTIME_ROOT, app)
@@ -21,10 +18,10 @@ def get_walltime_links():
     return links
 
 def get_stats_links():
-    """
-    Scans results/by_app/stats and returns a list of (test_name, compiler, relative_path)
-    """
     links = []
+    if not os.path.exists(STATS_ROOT):
+        print(f"[SKIP] Stats directory not found: {STATS_ROOT}")
+        return []
     for fname in sorted(os.listdir(STATS_ROOT)):
         if fname.endswith(".csv"):
             parts = fname.replace(".csv", "").split("_")
@@ -59,7 +56,6 @@ def generate_wiki():
         label = f"{test_name.upper()} {compiler.upper()} Stats"
         lines.append(f"- [{label}]({rel_path})")
 
-    # Write to file
     os.makedirs(os.path.dirname(WIKI_PATH), exist_ok=True)
     with open(WIKI_PATH, "w") as f:
         f.write("\n".join(lines))
