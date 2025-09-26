@@ -43,6 +43,20 @@ NUM_COMMITS = 50
 DRIFT_THRESHOLD_DAYS = 5
 
 # === UTILS ===
+def accumulate_case_stats(machine, compiler, case_name, walltimes, memsizes):
+    stats = {
+        "case_name": case_name,
+        "walltime_mean": round(np.mean(walltimes), 3),
+        "walltime_min": round(np.min(walltimes), 3),
+        "walltime_max": round(np.max(walltimes), 3),
+        "walltime_std": round(np.std(walltimes), 3),
+        "memsize_mean": round(np.mean(memsizes), 3),
+        "memsize_min": round(np.min(memsizes), 3),
+        "memsize_max": round(np.max(memsizes), 3),
+        "memsize_std": round(np.std(memsizes), 3),
+    }
+    stats_by_machine_compiler[(machine, compiler)].append(stats)
+
 def sort_pngs_by_compiler(base_dir="results/by_app", compilers=["intelllvm", "gnu", "intel"]):
     for metric in ["walltime", "memsize"]:
         metric_dir = os.path.join(base_dir, metric)
@@ -227,7 +241,102 @@ def sanitize_log_line(line):
 
     return line
 
+import pandas as pd
+from collections import defaultdict
+
 def collect_metrics(hashes, case_map):
+    """
+    Collects core hour and memory metrics from logs across commits and machines.
+
+    Args:
+        hashes (list): List of commit metadata.
+        case_map (dict): Mapping of test names to machines.
+
+    Returns:
+        tuple: (core_matrix, mem_matrix, compiler_from_log, summary_df)
+               core_matrix[test_name][hash][machine] → core_hour
+               mem_matrix[test_name][hash][machine] → memory_mb
+               summary_df: grouped stats by (test_name, machine, compiler)
+    """    
+    core_matrix = defaultdict(lambda: defaultdict(dict))
+    mem_matrix = defaultdict(lambda: defaultdict(dict))
+    compiler_matrix = defaultdict(lambda: defaultdict(dict))  # optional: track compiler per test/hash/machine
+
+    for h, date, msg in hashes:
+        subprocess.run(["git", "-C", UFS_REPO, "checkout", h], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        hash_date = datetime.fromisoformat(date) if isinstance(date, str) else date
+
+        for machine in MACHINES:
+            log_path = os.path.join(UFS_REPO, "tests", "logs", f"RegressionTests_{machine}.log")
+            if not os.path.exists(log_path):
+                continue
+
+            if is_machine_drifting_by_log_timestamp(log_path, hash_date):
+                print(f"[SKIP] {machine}: log timestamp is older than hash by > {DRIFT_THRESHOLD_DAYS} days → drifting.")
+                continue            
+
+            compiler_from_log = None
+            with open(log_path) as f:
+                for raw_line in f:
+                    line = sanitize_log_line(raw_line)
+                    if "PASS -- COMPILE" in line or "PASS -- TEST" in line:
+                        match = re.search(r"'([^']+)'", line)
+                        if match:
+                            test_id = match.group(1)
+                            parts = test_id.split("_")
+                            candidate = parts[-1].lower()
+                            if candidate in ["gnu", "intel", "intelllvm"]:
+                                compiler_from_log = candidate
+                    if "PASS -- TEST" in line and "[" in line and "(" in line:
+                        try:
+                            raw_name = line.split("TEST '")[1].split("'")[0]
+                            normalized = raw_name  # normalize_test_name(raw_name) if needed
+                            core_hour = parse_core_hour(line)
+                            memory_mb = parse_memory_mb(line)
+                            if normalized in case_map and machine in case_map[normalized]:
+                                if core_hour:
+                                    core_matrix[normalized][h][machine] = core_hour
+                                if memory_mb:
+                                    mem_matrix[normalized][h][machine] = memory_mb
+                                if compiler_from_log:
+                                    compiler_matrix[normalized][h][machine] = compiler_from_log
+                        except:
+                            continue
+
+    # Compute summary stats
+    stats_rows = []
+    for test_name in core_matrix:
+        for h in core_matrix[test_name]:
+            for machine in core_matrix[test_name][h]:
+                core = core_matrix[test_name][h][machine]
+                mem = mem_matrix[test_name].get(h, {}).get(machine)
+                compiler = compiler_matrix[test_name].get(h, {}).get(machine, "unknown")
+                stats_rows.append({
+                    'test_name': test_name,
+                    'hash': h,
+                    'machine': machine,
+                    'compiler': compiler,
+                    'core': core,
+                    'mem': mem
+                })
+
+    df = pd.DataFrame(stats_rows)
+    summary_df = df.groupby(['test_name', 'machine', 'compiler']).agg(
+        core_mean=('core', 'mean'),
+        core_std=('core', 'std'),
+        core_min=('core', 'min'),
+        core_max=('core', 'max'),
+        mem_mean=('mem', 'mean'),
+        mem_std=('mem', 'std'),
+        mem_min=('mem', 'min'),
+        mem_max=('mem', 'max'),
+        n_hashes=('hash', 'nunique')
+    ).reset_index()
+
+    return core_matrix, mem_matrix, compiler_from_log, summary_df
+
+
+def _collect_metrics(hashes, case_map):
     """
     Collects core hour and memory metrics from logs across commits and machines.
 
@@ -358,8 +467,9 @@ def process_app_yaml(yaml_file, hashes):
     app_name = os.path.splitext(os.path.basename(yaml_file))[0]
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
-    core_matrix, mem_matrix, compiler_log = collect_metrics(hashes, case_map)
-
+    core_matrix, mem_matrix, compiler_log, summary_df = collect_metrics(hashes, case_map)
+    print(summary_df)
+    
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
 
