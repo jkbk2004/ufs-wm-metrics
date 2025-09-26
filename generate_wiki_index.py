@@ -1,49 +1,69 @@
 import os
-from trigger import get_latest_hash, has_new_commit, log_trigger_event
 
-def generate_index(root_dir="wiki/regression_metrics/by_app", wiki_out="wiki/Regression-Metrics-by-App.md"):
-    os.makedirs(os.path.dirname(wiki_out), exist_ok=True)
+WIKI_PATH = "wiki/Regression-Metrics-by-App.md"
+WALLTIME_ROOT = "results/by_app/walltime"
+STATS_ROOT = "results/by_app/stats"
 
-    sections = []
-    for metric in ["walltime", "memsize"]:
-        metric_dir = os.path.join(root_dir, metric)
-        print(f"Scanning: {metric_dir}")
-
-        if not os.path.isdir(metric_dir):
-            print(f"Directory not found: {metric_dir}")
+def get_walltime_links():
+    """
+    Scans results/by_app/walltime and returns a list of (app, compiler, relative_path)
+    """
+    links = []
+    for app in sorted(os.listdir(WALLTIME_ROOT)):
+        app_path = os.path.join(WALLTIME_ROOT, app)
+        if not os.path.isdir(app_path):
             continue
+        for compiler in sorted(os.listdir(app_path)):
+            compiler_path = os.path.join(app_path, compiler)
+            if os.path.isdir(compiler_path):
+                rel_path = f"../{compiler_path}"
+                links.append((app, compiler, rel_path))
+    return links
 
-        app_sections = []
-        for app_name in sorted(os.listdir(metric_dir)):
-            app_dir = os.path.join(metric_dir, app_name)
-            if not os.path.isdir(app_dir):
-                continue
+def get_stats_links():
+    """
+    Scans results/by_app/stats and returns a list of (test_name, compiler, relative_path)
+    """
+    links = []
+    for fname in sorted(os.listdir(STATS_ROOT)):
+        if fname.endswith(".csv"):
+            parts = fname.replace(".csv", "").split("_")
+            if len(parts) >= 2:
+                test_name = parts[0]
+                compiler = "_".join(parts[1:])
+                rel_path = f"../{STATS_ROOT}/{fname}"
+                links.append((test_name, compiler, rel_path))
+    return links
 
-            pngs = [f for f in sorted(os.listdir(app_dir)) if f.endswith(".png")]
-            if not pngs:
-                continue
+def generate_wiki():
+    lines = []
+    lines.append("## 🧮 Regression Metrics by App\n")
+    lines.append("This page summarizes performance metrics collected across commits, machines, and compilers.\n")
+    lines.append("---\n")
 
-            images_md = "\n".join([f"![](regression_metrics/by_app/{metric}/{app_name}/{f})" for f in pngs])
-            app_md = f"""<details>
-<summary><strong>{app_name}</strong></summary>
+    # Walltime section
+    lines.append("### 📊 Walltime Results\n")
+    lines.append("Organized by app and compiler:\n")
+    walltime_links = get_walltime_links()
+    apps = sorted(set(app for app, _, _ in walltime_links))
+    for app in apps:
+        lines.append(f"- **{app.upper()}**")
+        for a, compiler, rel_path in walltime_links:
+            if a == app:
+                lines.append(f"  - [{compiler.upper()}]({rel_path})")
 
-{images_md}
+    # Stats section
+    lines.append("\n### 📈 Summary Statistics\n")
+    lines.append("Grouped by test name and compiler. Each file includes machine-level stats across hashes:\n")
+    for test_name, compiler, rel_path in get_stats_links():
+        label = f"{test_name.upper()} {compiler.upper()} Stats"
+        lines.append(f"- [{label}]({rel_path})")
 
-</details>"""
-            app_sections.append(app_md)
-
-        if app_sections:
-            sections.append(f"### 📈 {metric.capitalize()}\n" + "\n\n".join(app_sections))
-
-    with open(wiki_out, "w") as f:
-        f.write("# 📊 Regression Metrics by App\n\n")
-        f.write("This page is auto-generated from the latest regression results.\n\n")
-        if sections:
-            f.write("\n\n".join(sections))
-        else:
-            f.write("_No plots found in Wiki repo._\n")
+    # Write to file
+    os.makedirs(os.path.dirname(WIKI_PATH), exist_ok=True)
+    with open(WIKI_PATH, "w") as f:
+        f.write("\n".join(lines))
+    print(f"[UPDATE] Wiki index written to {WIKI_PATH}")
 
 if __name__ == "__main__":
-    latest = get_latest_hash()
-    if latest and has_new_commit(latest):
-        generate_index()
+    generate_wiki()
