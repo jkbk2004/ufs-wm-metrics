@@ -1,38 +1,55 @@
 import os
+import shutil
 
+# Paths
 WIKI_PATH = "wiki/Regression-Metrics-by-App.md"
-WALLTIME_ROOT = "results/by_app/walltime"
-STATS_ROOT = "results/stats"  # ✅ updated path
+WALLTIME_SRC = "results/by_app/walltime"
+STATS_SRC = "results/stats"
+WALLTIME_DST = "wiki/walltime"
+STATS_DST = "wiki/stats"
+
+def sync_walltime_images():
+    for app in os.listdir(WALLTIME_SRC):
+        for compiler in os.listdir(os.path.join(WALLTIME_SRC, app)):
+            src_dir = os.path.join(WALLTIME_SRC, app, compiler)
+            dst_dir = os.path.join(WALLTIME_DST, app, compiler)
+            if os.path.isdir(src_dir):
+                os.makedirs(dst_dir, exist_ok=True)
+                for fname in os.listdir(src_dir):
+                    if fname.endswith(".png"):
+                        shutil.copyfile(os.path.join(src_dir, fname), os.path.join(dst_dir, fname))
+
+def sync_stats_csvs():
+    os.makedirs(STATS_DST, exist_ok=True)
+    for fname in os.listdir(STATS_SRC):
+        if fname.endswith(".csv"):
+            shutil.copyfile(os.path.join(STATS_SRC, fname), os.path.join(STATS_DST, fname))
 
 def get_walltime_links():
     links = []
-    for app in sorted(os.listdir(WALLTIME_ROOT)):
-        app_path = os.path.join(WALLTIME_ROOT, app)
-        if not os.path.isdir(app_path):
-            continue
+    for app in sorted(os.listdir(WALLTIME_DST)):
+        app_path = os.path.join(WALLTIME_DST, app)
         for compiler in sorted(os.listdir(app_path)):
-            compiler_path = os.path.join(app_path, compiler)
-            if os.path.isdir(compiler_path):
-                rel_path = f"../{compiler_path}"
-                links.append((app, compiler, rel_path))
+            rel_path = f"walltime/{app}/{compiler}"
+            links.append((app, compiler, rel_path))
     return links
 
 def get_stats_links():
     links = []
-    if not os.path.exists(STATS_ROOT):
-        print(f"[SKIP] Stats directory not found: {STATS_ROOT}")
-        return []
-    for fname in sorted(os.listdir(STATS_ROOT)):
+    for fname in sorted(os.listdir(STATS_DST)):
         if fname.endswith(".csv"):
             parts = fname.replace(".csv", "").split("_")
             if len(parts) >= 2:
                 test_name = parts[0]
                 compiler = "_".join(parts[1:])
-                rel_path = f"../{STATS_ROOT}/{fname}"
+                rel_path = f"stats/{fname}"
                 links.append((test_name, compiler, rel_path))
     return links
 
 def generate_wiki():
+    sync_walltime_images()
+    sync_stats_csvs()
+
     lines = []
     lines.append("## 🧮 Regression Metrics by App\n")
     lines.append("This page summarizes performance metrics collected across commits, machines, and compilers.\n")
