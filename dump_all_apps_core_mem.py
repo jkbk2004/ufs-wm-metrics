@@ -43,19 +43,26 @@ NUM_COMMITS = 50
 DRIFT_THRESHOLD_DAYS = 5
 
 # === UTILS ===
-def accumulate_case_stats(machine, compiler, case_name, walltimes, memsizes):
-    stats = {
-        "case_name": case_name,
-        "walltime_mean": round(np.mean(walltimes), 3),
-        "walltime_min": round(np.min(walltimes), 3),
-        "walltime_max": round(np.max(walltimes), 3),
-        "walltime_std": round(np.std(walltimes), 3),
-        "memsize_mean": round(np.mean(memsizes), 3),
-        "memsize_min": round(np.min(memsizes), 3),
-        "memsize_max": round(np.max(memsizes), 3),
-        "memsize_std": round(np.std(memsizes), 3),
-    }
-    stats_by_machine_compiler[(machine, compiler)].append(stats)
+# === Save summary_df by case and compiler ===
+import os
+
+def save_summary_by_case_compiler(summary_df, output_dir="results/stats"):
+    """
+    Saves grouped summary stats to CSV files by (test_name, compiler),
+    including all machine rows per group.
+
+    Args:
+        summary_df (pd.DataFrame): Output from collect_metrics().
+        output_dir (str): Directory to save CSV files.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    grouped = summary_df.groupby(['test_name', 'compiler'])
+
+    for (test_name, compiler), df_group in grouped:
+        safe_name = f"{test_name}".replace("/", "_").replace(" ", "_")
+        file_path = os.path.join(output_dir, f"{safe_name}.csv")
+        df_group.to_csv(file_path, index=False)
+        print(f"[WRITE] {file_path} ({len(df_group)} rows)")
 
 def sort_pngs_by_compiler(base_dir="results/by_app", compilers=["intelllvm", "gnu", "intel"]):
     for metric in ["walltime", "memsize"]:
@@ -468,7 +475,7 @@ def process_app_yaml(yaml_file, hashes):
     print(f"\n🔍 Processing app: {app_name}")
     case_map = load_tests_from_yaml(yaml_file)
     core_matrix, mem_matrix, compiler_log, summary_df = collect_metrics(hashes, case_map)
-    print(summary_df)
+    save_summary_by_case_compiler(summary_df)
     
     walltime_dir = os.path.join(RESULTS_DIR, "walltime", app_name)
     memsize_dir = os.path.join(RESULTS_DIR, "memsize", app_name)
