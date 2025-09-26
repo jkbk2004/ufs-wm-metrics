@@ -1,0 +1,4 @@
+test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
+rap_control_debug_dyn32_phy32_gnu,hera,gnu,155.0,16.634552393537174,144,258,788.1632653061224,43.587721387821084,692,818,49
+rap_control_debug_dyn32_phy32_gnu,hercules,gnu,141.56,88.39179018115071,113,722,640569.16,368463.175420549,799,971892,50
+rap_control_debug_dyn32_phy32_gnu,ursa,gnu,115.07142857142857,17.318216851645985,105,185,26313.14285714286,135441.86106488487,715,717408,28

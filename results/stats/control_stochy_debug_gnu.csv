@@ -1,0 +1,4 @@
+test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
+control_stochy_debug_gnu,hera,gnu,108.36734693877551,27.648608974617378,96,269,570.3673469387755,46.08854425521182,468,598,49
+control_stochy_debug_gnu,hercules,gnu,81.32,7.525304251765018,73,114,466663.9,269597.484737347,574,727280,50
+control_stochy_debug_gnu,ursa,gnu,90.5,58.137448885920016,70,366,18279.714285714286,94093.16366234806,496,498392,28
