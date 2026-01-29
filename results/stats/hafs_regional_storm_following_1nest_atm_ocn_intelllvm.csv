@@ -1,3 +1,3 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_intelllvm,orion,intelllvm,320.8421052631579,23.812375769042493,305,414,30351.052631578947,129816.95777751144,565,566428,19
-hafs_regional_storm_following_1nest_atm_ocn_intelllvm,ursa,intelllvm,163.65,5.5939346852781515,155,176,817.2,9.248612982780905,798,828,20
+hafs_regional_storm_following_1nest_atm_ocn_intelllvm,orion,intelllvm,321.05555555555554,24.484021733805054,305,414,32005.61111111111,133374.2453911676,565,566428,18
+hafs_regional_storm_following_1nest_atm_ocn_intelllvm,ursa,intelllvm,163.42105263157896,5.650130671779831,155,176,818.2105263157895,8.290415800914142,798,828,19
