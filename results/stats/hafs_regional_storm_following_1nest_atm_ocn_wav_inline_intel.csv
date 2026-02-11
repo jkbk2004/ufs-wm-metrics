@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,acorn,intel,440.5625,3.444198019858908,436,448,781.75,1.341640786499885,779,784,16
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,gaeac6,intel,281.0,6.035608621222174,272,288,788.5333333333333,10.18308588273898,771,807,15
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hera,intel,905.875,6.849574196011503,896,918,673.4375,3.776572520156334,668,682,16
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hercules,intel,1147.0,126.9398807835163,1041,1397,52595.5625,207058.25001674247,828,829064,16
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,orion,intel,947.0625,106.42522805550698,902,1333,710.1875,14.180826257074493,680,723,16
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,ursa,intel,1632.1176470588234,43.92590686733339,1544,1716,1078.8235294117646,11.052348699018935,1064,1102,17
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,wcoss2,intel,505.9375,77.63802225713891,451,732,782.375,1.147460965203908,781,785,16
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,acorn,intel,440.06666666666666,2.914659173083213,436,448,781.9333333333333,1.1629191512658876,780,784,15
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,gaeac6,intel,280.57142857142856,6.021937915964948,272,288,787.2142857142857,9.141440480905281,771,807,14
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hera,intel,906.4,6.748544816688778,896,918,673.6,3.850788416489717,668,682,15
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hercules,intel,1151.5333333333333,130.04772017920774,1041,1397,831.0,2.7255405754769746,828,837,15
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,orion,intel,942.3333333333334,108.40642223112236,902,1333,709.7333333333333,14.557603151748902,680,723,15
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,ursa,intel,1631.3125,45.23673838817294,1544,1716,1077.375,9.604686356149287,1064,1100,16
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,wcoss2,intel,508.53333333333336,79.64103991093559,451,732,782.2,0.9411239481143114,781,784,15
