@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,acorn,intel,432.8,3.5213633723318067,429,440,622.9,25.718346240249062,612,696,10
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,gaeac6,intel,275.22222222222223,8.786036902064797,268,294,612.6666666666666,7.713624310270763,604,624,9
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hera,intel,908.5,4.116363011742825,904,916,628.7,40.210695094713294,602,742,10
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hercules,intel,1093.5,121.7020496494981,1026,1436,737.9,9.76899858395595,728,752,10
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,orion,intel,911.4,9.5823912580432,898,922,647.2,37.4782900119819,617,748,10
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,ursa,intel,1619.3636363636363,53.61207462367551,1577,1755,893.0,14.43606594609488,870,908,11
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,wcoss2,intel,499.5,66.86013593897172,448,642,623.8,32.07560512982482,610,715,10
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,acorn,intel,432.55555555555554,3.643868518179246,429,440,623.7777777777778,27.119078974855395,612,696,9
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,gaeac6,intel,274.5,9.102589898327992,268,294,611.25,6.881652625434017,604,624,8
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hera,intel,909.0,4.031128874149277,904,916,629.8888888888889,42.4630558381178,602,742,9
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hercules,intel,1099.111111111111,127.70517260906513,1026,1436,738.1111111111111,10.337364804973806,728,752,9
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,orion,intel,910.2222222222222,9.364531191920126,898,922,648.5555555555555,39.49085688837073,617,748,9
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,ursa,intel,1622.1,55.696498992306566,1577,1755,891.9,14.72299788313056,870,908,10
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,wcoss2,intel,504.3333333333333,69.03803299631299,448,642,624.8888888888889,33.82471154512793,610,715,9
