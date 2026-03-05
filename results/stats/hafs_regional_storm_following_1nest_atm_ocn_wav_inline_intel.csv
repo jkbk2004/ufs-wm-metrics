@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,acorn,intel,438.375,1.6850180160122044,436,441,782.5,1.0690449676496987,781,784,8
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,acorn,intel,438.14285714285717,1.6761634196950503,436,441,782.7142857142857,0.9511897312113499,781,784,7
 hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,gaeac6,intel,275.0,2.1602468994692887,272,278,781.5714285714286,7.161404491139593,771,794,7
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hera,intel,908.25,7.44023809142845,896,918,673.25,2.604940361258641,670,678,8
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hercules,intel,1156.0,134.2492351667492,1056,1397,831.5,2.5071326821120405,828,834,8
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,orion,intel,965.875,148.51400847827693,905,1333,705.25,19.292855820595502,680,723,8
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,ursa,intel,1635.111111111111,45.89783340323495,1544,1681,1075.5555555555557,8.29323686974983,1067,1092,9
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,wcoss2,intel,534.25,95.52075316764564,464,732,782.375,0.9161253813128922,781,784,8
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hera,intel,909.5714285714286,6.948792289723036,896,918,673.7142857142857,2.429971585175832,670,678,7
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hercules,intel,1129.2857142857142,119.85785231642006,1056,1397,831.8571428571429,2.4784787961282144,828,834,7
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,orion,intel,971.1428571428571,159.604123350483,905,1333,704.0,20.48576741707927,680,723,7
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,ursa,intel,1641.125,45.117109519876934,1544,1681,1074.75,8.481071360893724,1067,1092,8
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,wcoss2,intel,544.1428571428571,98.6482447409795,464,732,782.5714285714286,0.7867957924694291,782,784,7

@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_debug_intelllvm,ursa,intelllvm,491.8888888888889,3.2574700476153375,488,497,731.6666666666666,10.920164833920778,715,748,9
+hafs_regional_storm_following_1nest_atm_ocn_debug_intelllvm,ursa,intelllvm,491.5,3.251373336211721,488,497,732.875,11.012168594008049,715,748,8
