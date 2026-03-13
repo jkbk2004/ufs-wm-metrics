@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,acorn,intel,437.8,1.9235384061671352,436,441,782.8,1.0954451150103466,781,784,5
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,gaeac6,intel,275.0,1.5811388300841942,273,277,780.6,8.502940667792533,771,794,5
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hera,intel,909.0,8.306623862918075,896,918,673.6,0.8944271909999063,672,674,5
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hercules,intel,1137.4,145.80912179970082,1056,1397,832.6,2.190890230020657,829,834,5
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,orion,intel,994.6,189.2004228325085,905,1333,698.8,22.33159197191279,680,723,5
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,ursa,intel,1634.5,50.23445033042562,1544,1681,1075.5,9.481561052906864,1067,1092,6
-hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,wcoss2,intel,522.6,59.906593960932206,464,619,782.2,0.4472135954999452,782,783,5
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,acorn,intel,438.0,2.160246899469287,436,441,782.5,1.0000000000000093,781,783,4
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,gaeac6,intel,275.5,1.290994448735813,274,277,781.0,9.763879010584548,771,794,4
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hera,intel,906.75,7.632168761236874,896,914,673.5,0.9999999999999905,672,674,4
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,hercules,intel,1072.5,16.34013463836819,1056,1095,832.75,2.4999999999999907,829,834,4
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,orion,intel,1015.0,212.025155740225,905,1333,703.5,22.752289262108697,680,723,4
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,ursa,intel,1635.4,56.109713954002636,1544,1681,1075.0,10.511898020814339,1067,1092,5
+hafs_regional_storm_following_1nest_atm_ocn_wav_inline_intel,wcoss2,intel,498.5,30.215889859476256,464,534,782.0,0.0,782,782,4

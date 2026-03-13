@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,acorn,intel,855.4,7.402702209328695,848,867,595.2,8.955445270895256,589,611,5
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,gaeac6,intel,478.6,9.607288899580361,470,495,561.2,2.9495762407505195,558,564,5
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hera,intel,750.6,6.542170893518447,740,758,578.4,3.781534080237811,575,583,5
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hercules,intel,642.2,8.526429498916892,631,655,643.0,16.807736313971603,634,673,5
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,orion,intel,756.2,11.627553482998897,738,770,578.4,3.2093613071762555,573,581,5
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,ursa,intel,489.8333333333333,3.4302575219167806,486,494,725.8333333333334,12.859497138950134,706,743,6
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,wcoss2,intel,888.6,42.79369112380937,851,961,633.4,34.72463102755736,595,662,5
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,acorn,intel,857.25,7.088723439378913,850,867,596.75,9.535023160258543,591,611,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,gaeac6,intel,479.0,11.045361017187261,470,495,560.75,3.201562118716423,558,564,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hera,intel,750.25,7.4999999999999964,740,758,577.5,3.696845502136472,575,583,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hercules,intel,645.0,6.683312551921141,641,655,645.25,18.518009252256743,635,673,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,orion,intel,755.25,13.200378782444076,738,770,577.75,3.3040379335998478,573,580,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,ursa,intel,489.2,3.4205262752974073,486,494,726.0,14.370107863199914,706,743,5
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,wcoss2,intel,891.75,48.73995623031821,851,961,643.0,31.51719107619416,596,662,4
