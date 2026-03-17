@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,acorn,intel,857.25,7.088723439378913,850,867,596.75,9.535023160258543,591,611,4
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,gaeac6,intel,479.0,11.045361017187261,470,495,560.75,3.201562118716423,558,564,4
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hera,intel,750.25,7.4999999999999964,740,758,577.5,3.696845502136472,575,583,4
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hercules,intel,645.0,6.683312551921141,641,655,645.25,18.518009252256743,635,673,4
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,orion,intel,755.25,13.200378782444076,738,770,577.75,3.3040379335998478,573,580,4
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,ursa,intel,489.2,3.4205262752974073,486,494,726.0,14.370107863199914,706,743,5
-hafs_regional_storm_following_1nest_atm_ocn_debug_intel,wcoss2,intel,891.75,48.73995623031821,851,961,643.0,31.51719107619416,596,662,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,acorn,intel,854.0,3.4641016151377544,850,856,598.6666666666666,10.692676621563644,592,611,3
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,gaeac6,intel,482.0,11.357816691600547,474,495,561.6666666666666,3.2145502536643242,558,564,3
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hera,intel,753.6666666666666,3.785938897200199,751,758,578.0,4.358898943540674,575,583,3
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,hercules,intel,646.0,7.810249675906654,641,655,648.6666666666666,21.079215671683162,636,673,3
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,orion,intel,750.3333333333334,10.78579312490895,738,758,579.3333333333334,1.154700538379268,578,580,3
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,ursa,intel,490.0,3.366501646120686,486,494,726.25,16.580611166861935,706,743,4
+hafs_regional_storm_following_1nest_atm_ocn_debug_intel,wcoss2,intel,905.3333333333334,49.56140971898735,866,961,639.3333333333334,37.54108860080289,596,662,3
