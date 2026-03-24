@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,acorn,intel,430.5,2.1213203435596424,429,432,613.0,1.4142135623730951,612,614,2
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,gaeac6,intel,269.5,0.7071067811865476,269,270,613.0,8.48528137423857,607,619,2
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hera,intel,909.5,2.1213203435596424,908,911,618.0,5.656854249492381,614,622,2
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hercules,intel,1050.0,33.94112549695428,1026,1074,739.5,16.263455967290593,728,751,2
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,orion,intel,909.0,4.242640687119285,906,912,625.5,12.020815280171307,617,634,2
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,ursa,intel,1675.0,113.13708498984761,1595,1755,883.5,12.020815280171307,875,892,2
-hafs_regional_storm_following_1nest_atm_ocn_wav_intel,wcoss2,intel,514.0,26.870057685088806,495,533,614.0,1.4142135623730951,613,615,2
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,acorn,intel,432.0,,432,432,612.0,,612,612,1
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,gaeac6,intel,270.0,,270,270,619.0,,619,619,1
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hera,intel,911.0,,911,911,614.0,,614,614,1
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,hercules,intel,1026.0,,1026,1026,728.0,,728,728,1
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,orion,intel,912.0,,912,912,617.0,,617,617,1
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,ursa,intel,1755.0,,1755,1755,892.0,,892,892,1
+hafs_regional_storm_following_1nest_atm_ocn_wav_intel,wcoss2,intel,495.0,,495,495,615.0,,615,615,1

@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_atm_ocn_intel,acorn,intel,413.5,0.7071067811865476,413,414,771.5,19.091883092036785,758,785,2
-hafs_regional_atm_ocn_intel,gaeac6,intel,255.0,1.4142135623730951,254,256,901.0,1.4142135623730951,900,902,2
-hafs_regional_atm_ocn_intel,hera,intel,373.5,0.7071067811865476,373,374,941.0,5.656854249492381,937,945,2
-hafs_regional_atm_ocn_intel,hercules,intel,528.5,119.50104602052653,444,613,1100.5,13.435028842544403,1091,1110,2
-hafs_regional_atm_ocn_intel,orion,intel,382.0,1.4142135623730951,381,383,970.5,0.7071067811865476,970,971,2
-hafs_regional_atm_ocn_intel,ursa,intel,265.0,9.899494936611665,258,272,1315.5,2.1213203435596424,1314,1317,2
-hafs_regional_atm_ocn_intel,wcoss2,intel,489.5,43.1335136523794,459,520,766.0,1.4142135623730951,765,767,2
+hafs_regional_atm_ocn_intel,acorn,intel,414.0,,414,414,758.0,,758,758,1
+hafs_regional_atm_ocn_intel,gaeac6,intel,254.0,,254,254,900.0,,900,900,1
+hafs_regional_atm_ocn_intel,hera,intel,373.0,,373,373,945.0,,945,945,1
+hafs_regional_atm_ocn_intel,hercules,intel,613.0,,613,613,1091.0,,1091,1091,1
+hafs_regional_atm_ocn_intel,orion,intel,383.0,,383,383,970.0,,970,970,1
+hafs_regional_atm_ocn_intel,ursa,intel,272.0,,272,272,1317.0,,1317,1317,1
+hafs_regional_atm_ocn_intel,wcoss2,intel,459.0,,459,459,765.0,,765,765,1

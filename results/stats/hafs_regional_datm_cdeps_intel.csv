@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-hafs_regional_datm_cdeps_intel,acorn,intel,978.0,5.656854249492381,974,982,892.5,2.1213203435596424,891,894,2
-hafs_regional_datm_cdeps_intel,gaeac6,intel,656.0,1.4142135623730951,655,657,885.5,4.949747468305833,882,889,2
-hafs_regional_datm_cdeps_intel,hera,intel,985.5,13.435028842544403,976,995,1308.0,8.48528137423857,1302,1314,2
-hafs_regional_datm_cdeps_intel,hercules,intel,988.0,7.0710678118654755,983,993,1343.5,2.1213203435596424,1342,1345,2
-hafs_regional_datm_cdeps_intel,orion,intel,972.5,0.7071067811865476,972,973,1208.0,0.0,1208,1208,2
-hafs_regional_datm_cdeps_intel,ursa,intel,699.0,4.242640687119285,696,702,1813.0,7.0710678118654755,1808,1818,2
-hafs_regional_datm_cdeps_intel,wcoss2,intel,1055.5,19.091883092036785,1042,1069,898.5,0.7071067811865476,898,899,2
+hafs_regional_datm_cdeps_intel,acorn,intel,982.0,,982,982,891.0,,891,891,1
+hafs_regional_datm_cdeps_intel,gaeac6,intel,655.0,,655,655,882.0,,882,882,1
+hafs_regional_datm_cdeps_intel,hera,intel,976.0,,976,976,1302.0,,1302,1302,1
+hafs_regional_datm_cdeps_intel,hercules,intel,993.0,,993,993,1342.0,,1342,1342,1
+hafs_regional_datm_cdeps_intel,orion,intel,972.0,,972,972,1208.0,,1208,1208,1
+hafs_regional_datm_cdeps_intel,ursa,intel,696.0,,696,696,1818.0,,1818,1818,1
+hafs_regional_datm_cdeps_intel,wcoss2,intel,1069.0,,1069,1069,898.0,,898,898,1
