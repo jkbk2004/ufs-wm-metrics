@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-pm_ideal_supercell_intel,hera,intel,84.34782608695652,1.3687650589349745,83,87,1164.7391304347825,2.2806974871008308,1161,1170,23
+pm_ideal_supercell_intel,hera,intel,84.4090909090909,1.3683180815491593,83,87,1164.8181818181818,2.301890809465422,1161,1170,22
