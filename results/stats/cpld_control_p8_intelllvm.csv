@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_control_p8_intelllvm,ursa,intelllvm,440.8235294117647,21.784718842449244,418,522,2489.0,21.675289659383637,2453,2526,34
+cpld_control_p8_intelllvm,ursa,intelllvm,440.93939393939394,22.11184551594941,418,522,2488.6060606060605,21.88740989978518,2453,2526,33

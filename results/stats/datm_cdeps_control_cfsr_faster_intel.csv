@@ -1,7 +1,7 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-datm_cdeps_control_cfsr_faster_intel,acorn,intel,190.0,6.782329983125268,183,199,1566.4,1.3416407864998834,1565,1568,5
-datm_cdeps_control_cfsr_faster_intel,gaeac6,intel,127.2,5.540758070878031,122,133,1549.6,3.1304951684996825,1547,1555,5
-datm_cdeps_control_cfsr_faster_intel,hera,intel,179.4,1.6733200530681525,177,181,2007.6,2.408318915758488,2005,2011,5
-datm_cdeps_control_cfsr_faster_intel,hercules,intel,146.2,1.4832396974191335,144,148,1868.0,6.2048368229954285,1860,1877,5
-datm_cdeps_control_cfsr_faster_intel,orion,intel,207.0,1.581138830084189,205,209,1865.4,2.966479394838255,1861,1868,5
-datm_cdeps_control_cfsr_faster_intel,ursa,intel,121.0,5.958187643906492,111,126,1938.4,4.929503017546526,1933,1945,5
+datm_cdeps_control_cfsr_faster_intel,acorn,intel,190.5,7.724420150837645,183,199,1566.75,1.258305739211784,1565,1568,4
+datm_cdeps_control_cfsr_faster_intel,gaeac6,intel,128.5,5.446711546122734,122,133,1550.25,3.2015621187164096,1548,1555,4
+datm_cdeps_control_cfsr_faster_intel,hera,intel,180.0,1.1547005383792515,179,181,2007.25,2.6299556396766084,2005,2011,4
+datm_cdeps_control_cfsr_faster_intel,hercules,intel,146.0,1.632993161855452,144,148,1868.25,7.135591542869215,1860,1877,4
+datm_cdeps_control_cfsr_faster_intel,orion,intel,207.25,1.7078251276599323,205,209,1864.75,2.986078811194823,1861,1868,4
+datm_cdeps_control_cfsr_faster_intel,ursa,intel,120.0,6.377042156569663,111,126,1939.75,4.500000000000023,1934,1945,4
