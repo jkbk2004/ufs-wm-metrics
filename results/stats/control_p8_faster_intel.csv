@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-control_p8_faster_intel,acorn,intel,187.5,6.363961030678928,183,192,1855.5,0.7071067811865476,1855,1856,2
-control_p8_faster_intel,gaeac6,intel,116.0,0.0,116,116,1703.0,0.0,1703,1703,2
-control_p8_faster_intel,hera,intel,170.0,0.0,170,170,2016.0,1.4142135623730951,2015,2017,2
-control_p8_faster_intel,hercules,intel,198.5,34.64823227814083,174,223,1911.0,4.242640687119285,1908,1914,2
-control_p8_faster_intel,orion,intel,236.0,60.81118318204309,193,279,1882.5,2.1213203435596424,1881,1884,2
-control_p8_faster_intel,ursa,intel,133.5,9.192388155425117,127,140,2515.5,7.7781745930520225,2510,2521,2
-control_p8_faster_intel,wcoss2,intel,323.5,159.0990257669732,211,436,1852.5,3.5355339059327378,1850,1855,2
+control_p8_faster_intel,acorn,intel,192.0,,192,192,1856.0,,1856,1856,1
+control_p8_faster_intel,gaeac6,intel,116.0,,116,116,1703.0,,1703,1703,1
+control_p8_faster_intel,hera,intel,170.0,,170,170,2015.0,,2015,2015,1
+control_p8_faster_intel,hercules,intel,174.0,,174,174,1908.0,,1908,1908,1
+control_p8_faster_intel,orion,intel,193.0,,193,193,1884.0,,1884,1884,1
+control_p8_faster_intel,ursa,intel,127.0,,127,127,2521.0,,2521,2521,1
+control_p8_faster_intel,wcoss2,intel,436.0,,436,436,1850.0,,1850,1850,1

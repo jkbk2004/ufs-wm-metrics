@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-regional_control_faster_intel,acorn,intel,302.5,0.7071067811865476,302,303,873.0,5.656854249492381,869,877,2
-regional_control_faster_intel,gaeac6,intel,192.0,0.0,192,192,858.0,0.0,858,858,2
-regional_control_faster_intel,hera,intel,293.0,2.8284271247461903,291,295,1215.0,0.0,1215,1215,2
-regional_control_faster_intel,hercules,intel,295.0,36.76955262170047,269,321,1183.5,12.020815280171307,1175,1192,2
-regional_control_faster_intel,orion,intel,395.5,40.30508652763321,367,424,1078.5,0.7071067811865476,1078,1079,2
-regional_control_faster_intel,ursa,intel,208.5,0.7071067811865476,208,209,1712.5,10.606601717798213,1705,1720,2
-regional_control_faster_intel,wcoss2,intel,427.0,128.69343417595164,336,518,870.5,0.7071067811865476,870,871,2
+regional_control_faster_intel,acorn,intel,302.0,,302,302,877.0,,877,877,1
+regional_control_faster_intel,gaeac6,intel,192.0,,192,192,858.0,,858,858,1
+regional_control_faster_intel,hera,intel,291.0,,291,291,1215.0,,1215,1215,1
+regional_control_faster_intel,hercules,intel,269.0,,269,269,1192.0,,1192,1192,1
+regional_control_faster_intel,orion,intel,367.0,,367,367,1078.0,,1078,1078,1
+regional_control_faster_intel,ursa,intel,208.0,,208,208,1705.0,,1705,1705,1
+regional_control_faster_intel,wcoss2,intel,518.0,,518,518,871.0,,871,871,1

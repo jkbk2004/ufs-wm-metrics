@@ -1,7 +1,7 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-datm_cdeps_control_cfsr_faster_intel,acorn,intel,190.0,7.0710678118654755,185,195,1566.5,2.1213203435596424,1565,1568,2
-datm_cdeps_control_cfsr_faster_intel,gaeac6,intel,133.0,0.0,133,133,1549.0,0.0,1549,1549,2
-datm_cdeps_control_cfsr_faster_intel,hera,intel,180.0,1.4142135623730951,179,181,2005.5,0.7071067811865476,2005,2006,2
-datm_cdeps_control_cfsr_faster_intel,hercules,intel,145.0,1.4142135623730951,144,146,1868.0,2.8284271247461903,1866,1870,2
-datm_cdeps_control_cfsr_faster_intel,orion,intel,207.5,0.7071067811865476,207,208,1864.5,4.949747468305833,1861,1868,2
-datm_cdeps_control_cfsr_faster_intel,ursa,intel,124.0,2.8284271247461903,122,126,1942.5,3.5355339059327378,1940,1945,2
+datm_cdeps_control_cfsr_faster_intel,acorn,intel,195.0,,195,195,1565.0,,1565,1565,1
+datm_cdeps_control_cfsr_faster_intel,gaeac6,intel,133.0,,133,133,1549.0,,1549,1549,1
+datm_cdeps_control_cfsr_faster_intel,hera,intel,181.0,,181,181,2006.0,,2006,2006,1
+datm_cdeps_control_cfsr_faster_intel,hercules,intel,146.0,,146,146,1870.0,,1870,1870,1
+datm_cdeps_control_cfsr_faster_intel,orion,intel,207.0,,207,207,1861.0,,1861,1861,1
+datm_cdeps_control_cfsr_faster_intel,ursa,intel,122.0,,122,122,1940.0,,1940,1940,1
