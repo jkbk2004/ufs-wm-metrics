@@ -1,3 +1,3 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-rap_control_dyn64_phy32_intelllvm,hera,intelllvm,249.30769230769232,3.092588327615325,246,257,1110.1538461538462,3.2105595007244605,1105,1117,13
-rap_control_dyn64_phy32_intelllvm,ursa,intelllvm,256.6,212.95587355513968,158,803,1840.3,61.38511752095305,1785,2038,50
+rap_control_dyn64_phy32_intelllvm,hera,intelllvm,249.25,3.2227881773960294,246,257,1110.1666666666667,3.352972448801812,1105,1117,12
+rap_control_dyn64_phy32_intelllvm,ursa,intelllvm,257.12,212.74432676672856,158,803,1839.86,61.6193085296602,1785,2038,50
