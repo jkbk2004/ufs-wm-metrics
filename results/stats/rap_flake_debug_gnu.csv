@@ -1,5 +1,5 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-rap_flake_debug_gnu,derecho,gnu,160.0,0.0,160,160,962.5,0.7071067811865476,962,963,2
-rap_flake_debug_gnu,hera,gnu,159.0,2.8284271247461903,157,161,948.0,1.4142135623730951,947,949,2
-rap_flake_debug_gnu,hercules,gnu,119.5,6.363961030678928,115,124,949.0,1.4142135623730951,948,950,2
-rap_flake_debug_gnu,ursa,gnu,136.5,28.991378028648448,116,157,854.5,0.7071067811865476,854,855,2
+rap_flake_debug_gnu,derecho,gnu,160.0,,160,160,963.0,,963,963,1
+rap_flake_debug_gnu,hera,gnu,161.0,,161,161,949.0,,949,949,1
+rap_flake_debug_gnu,hercules,gnu,124.0,,124,124,948.0,,948,948,1
+rap_flake_debug_gnu,ursa,gnu,116.0,,116,116,855.0,,855,855,1

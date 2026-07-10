@@ -1,9 +1,9 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-control_iovr4_intel,acorn,intel,154.5,0.7071067811865476,154,155,633.0,1.4142135623730951,632,634,2
-control_iovr4_intel,derecho,intel,146.0,1.4142135623730951,145,147,577.5,0.7071067811865476,577,578,2
-control_iovr4_intel,gaeac6,intel,108.5,2.1213203435596424,107,110,6339.0,0.0,6339,6339,2
-control_iovr4_intel,hera,intel,147.0,4.242640687119285,144,150,780.5,0.7071067811865476,780,781,2
-control_iovr4_intel,hercules,intel,126.5,0.7071067811865476,126,127,675.5,0.7071067811865476,675,676,2
-control_iovr4_intel,orion,intel,164.0,2.8284271247461903,162,166,649.0,4.242640687119285,646,652,2
-control_iovr4_intel,ursa,intel,302.5,283.5498192558056,102,503,1304.5,26.16295090390226,1286,1323,2
-control_iovr4_intel,wcoss2,intel,164.5,0.7071067811865476,164,165,636.0,0.0,636,636,2
+control_iovr4_intel,acorn,intel,155.0,,155,155,632.0,,632,632,1
+control_iovr4_intel,derecho,intel,147.0,,147,147,577.0,,577,577,1
+control_iovr4_intel,gaeac6,intel,110.0,,110,110,6339.0,,6339,6339,1
+control_iovr4_intel,hera,intel,144.0,,144,144,781.0,,781,781,1
+control_iovr4_intel,hercules,intel,127.0,,127,127,675.0,,675,675,1
+control_iovr4_intel,orion,intel,166.0,,166,166,652.0,,652,652,1
+control_iovr4_intel,ursa,intel,503.0,,503,503,1323.0,,1323,1323,1
+control_iovr4_intel,wcoss2,intel,164.0,,164,164,636.0,,636,636,1

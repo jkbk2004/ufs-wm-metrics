@@ -1,9 +1,9 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-control_flake_intel,acorn,intel,236.0,1.4142135623730951,235,237,681.5,2.1213203435596424,680,683,2
-control_flake_intel,derecho,intel,217.0,1.4142135623730951,216,218,626.0,0.0,626,626,2
-control_flake_intel,gaeac6,intel,154.0,1.4142135623730951,153,155,6338.0,0.0,6338,6338,2
-control_flake_intel,hera,intel,203.0,11.313708498984761,195,211,829.5,0.7071067811865476,829,830,2
-control_flake_intel,hercules,intel,176.0,4.242640687119285,173,179,725.0,2.8284271247461903,723,727,2
-control_flake_intel,orion,intel,224.5,0.7071067811865476,224,225,697.0,2.8284271247461903,695,699,2
-control_flake_intel,ursa,intel,194.5,57.27564927611035,154,235,1344.5,4.949747468305833,1341,1348,2
-control_flake_intel,wcoss2,intel,243.5,0.7071067811865476,243,244,685.0,0.0,685,685,2
+control_flake_intel,acorn,intel,235.0,,235,235,683.0,,683,683,1
+control_flake_intel,derecho,intel,216.0,,216,216,626.0,,626,626,1
+control_flake_intel,gaeac6,intel,155.0,,155,155,6338.0,,6338,6338,1
+control_flake_intel,hera,intel,195.0,,195,195,829.0,,829,829,1
+control_flake_intel,hercules,intel,179.0,,179,179,723.0,,723,723,1
+control_flake_intel,orion,intel,225.0,,225,225,695.0,,695,695,1
+control_flake_intel,ursa,intel,154.0,,154,154,1348.0,,1348,1348,1
+control_flake_intel,wcoss2,intel,244.0,,244,244,685.0,,685,685,1
