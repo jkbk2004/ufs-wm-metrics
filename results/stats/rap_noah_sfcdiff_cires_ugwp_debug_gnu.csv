@@ -1,5 +1,4 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-rap_noah_sfcdiff_cires_ugwp_debug_gnu,derecho,gnu,243.77272727272728,4.153248302085225,234,253,962.0,1.6565584947449565,959,966,44
-rap_noah_sfcdiff_cires_ugwp_debug_gnu,hera,gnu,244.0,,244,244,945.0,,945,945,1
-rap_noah_sfcdiff_cires_ugwp_debug_gnu,hercules,gnu,203.45652173913044,14.932003693393492,184,246,21363.152173913044,138524.24405808977,932,940456,46
-rap_noah_sfcdiff_cires_ugwp_debug_gnu,ursa,gnu,224.08,235.77019596658616,166,1780,860.56,10.846159858376955,848,876,50
+rap_noah_sfcdiff_cires_ugwp_debug_gnu,derecho,gnu,243.72727272727272,4.183931812573209,234,253,962.0454545454545,1.6275898211136344,959,966,44
+rap_noah_sfcdiff_cires_ugwp_debug_gnu,hercules,gnu,203.43478260869566,14.946797760223562,184,246,21363.0,138524.26699382954,932,940456,46
+rap_noah_sfcdiff_cires_ugwp_debug_gnu,ursa,gnu,224.1,235.76538407181533,166,1780,861.0,10.937671281457698,848,876,50
