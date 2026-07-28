@@ -1,4 +1,4 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
 cpld_control_nowave_noaero_p8_gnu,derecho,gnu,535.8,12.389960093200912,525,568,1633.4,10.046558282980865,1615,1651,10
-cpld_control_nowave_noaero_p8_gnu,hercules,gnu,515.1818181818181,17.39435645155162,498,565,1625.4545454545455,8.358990804680136,1611,1635,11
-cpld_control_nowave_noaero_p8_gnu,ursa,gnu,549.0,278.3249898949069,411,1221,1553.2727272727273,5.46060269733862,1544,1558,11
+cpld_control_nowave_noaero_p8_gnu,hercules,gnu,516.9,17.32339458651218,504,565,1624.5,8.154753215150034,1611,1634,10
+cpld_control_nowave_noaero_p8_gnu,ursa,gnu,562.6,289.5019477961725,411,1221,1552.9,5.60654379572061,1544,1558,10
