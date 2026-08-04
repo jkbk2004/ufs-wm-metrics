@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_control_sfs_intelllvm,ursa,intelllvm,513.76,11.999251677347534,488,543,2395.52,9.161231536497086,2376,2417,50
+cpld_control_sfs_intelllvm,ursa,intelllvm,514.0,11.733433827646321,488,543,2395.52,9.161231536496906,2376,2417,50
