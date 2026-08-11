@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-datm_cdeps_debug_cfsr_intelllvm,ursa,intelllvm,394.8,227.62303244170866,231,1065,1833.4,4.664236490661256,1822,1846,50
+datm_cdeps_debug_cfsr_intelllvm,ursa,intelllvm,401.48,228.00780867401565,231,1065,1833.52,4.7304484837214105,1822,1846,50
