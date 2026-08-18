@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-rap_control_dyn32_phy32_intelllvm,ursa,intelllvm,293.02,266.1841843536163,126,837,1794.4,95.81167752951835,1713,2029,50
+rap_control_dyn32_phy32_intelllvm,ursa,intelllvm,292.58,266.4401062229214,126,837,1794.24,95.92462176742991,1713,2029,50
