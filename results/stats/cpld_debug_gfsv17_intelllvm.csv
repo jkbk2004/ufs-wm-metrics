@@ -1,2 +1,2 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_debug_gfsv17_intelllvm,ursa,intelllvm,805.06,10.373455134552408,792,846,2085.0,8.184106049944234,2072,2104,50
+cpld_debug_gfsv17_intelllvm,ursa,intelllvm,805.24,10.219149691053728,793,846,2085.02,8.187820721246034,2072,2104,50

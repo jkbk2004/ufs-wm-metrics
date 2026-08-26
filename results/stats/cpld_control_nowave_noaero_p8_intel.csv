@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_control_nowave_noaero_p8_intel,acorn,intel,432.4,5.770615218501399,424,439,1987.2,1.4832396974191384,1985,1989,5
-cpld_control_nowave_noaero_p8_intel,derecho,intel,447.2,17.512852423291875,437,478,1932.6,0.5477225575051375,1932,1933,5
-cpld_control_nowave_noaero_p8_intel,gaeac6,intel,283.0,13.583077707206124,274,307,6339.0,0.0,6339,6339,5
-cpld_control_nowave_noaero_p8_intel,hercules,intel,353.0,2.7386127875258324,350,357,2175.8,6.058052492344427,2166,2181,5
-cpld_control_nowave_noaero_p8_intel,orion,intel,419.4,49.75238687741524,390,507,2103.2,1.4832396974191766,2101,2105,5
-cpld_control_nowave_noaero_p8_intel,ursa,intel,586.4,652.731797907839,289,1754,3003.4,14.638989036132203,2991,3027,5
-cpld_control_nowave_noaero_p8_intel,wcoss2,intel,440.2,5.540758070878027,435,449,1888.4,2.6076809620810617,1887,1893,5
+cpld_control_nowave_noaero_p8_intel,acorn,intel,434.5,3.872983346207417,430,439,1987.25,1.7078251276599385,1985,1989,4
+cpld_control_nowave_noaero_p8_intel,derecho,intel,439.5,3.6968455021364686,437,445,1932.75,0.499999999999981,1932,1933,4
+cpld_control_nowave_noaero_p8_intel,gaeac6,intel,277.0,2.449489742783178,274,280,6339.0,0.0,6339,6339,4
+cpld_control_nowave_noaero_p8_intel,hercules,intel,352.75,3.095695936834454,350,357,2176.25,6.898067362191667,2166,2181,4
+cpld_control_nowave_noaero_p8_intel,orion,intel,426.75,54.22407214512758,391,507,2103.25,1.7078251276599885,2101,2105,4
+cpld_control_nowave_noaero_p8_intel,ursa,intel,658.25,730.5219024779476,289,1754,3005.5,16.01041327803038,2991,3027,4
+cpld_control_nowave_noaero_p8_intel,wcoss2,intel,440.25,6.3966136874651625,435,449,1888.5,3.0,1887,1893,4
