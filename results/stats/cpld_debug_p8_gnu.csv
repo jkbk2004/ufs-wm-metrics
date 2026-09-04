@@ -1,4 +1,4 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_debug_p8_gnu,derecho,gnu,414.5,0.7071067811865476,414,415,1659.5,9.192388155425117,1653,1666,2
-cpld_debug_p8_gnu,hercules,gnu,410.0,1.4142135623730951,409,411,1724.5,9.192388155425117,1718,1731,2
-cpld_debug_p8_gnu,ursa,gnu,283.0,7.0710678118654755,278,288,1603.0,1.4142135623730951,1602,1604,2
+cpld_debug_p8_gnu,derecho,gnu,415.0,,415,415,1653.0,,1653,1653,1
+cpld_debug_p8_gnu,hercules,gnu,409.0,,409,409,1731.0,,1731,1731,1
+cpld_debug_p8_gnu,ursa,gnu,288.0,,288,288,1602.0,,1602,1602,1

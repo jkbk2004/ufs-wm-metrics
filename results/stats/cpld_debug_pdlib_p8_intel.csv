@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_debug_pdlib_p8_intel,acorn,intel,1490.5,41.71930009000631,1461,1520,1965.5,2.1213203435596424,1964,1967,2
-cpld_debug_pdlib_p8_intel,derecho,intel,1387.0,2.8284271247461903,1385,1389,1894.0,2.8284271247461903,1892,1896,2
-cpld_debug_pdlib_p8_intel,gaeac6,intel,975.5,2.1213203435596424,974,977,6339.0,0.0,6339,6339,2
-cpld_debug_pdlib_p8_intel,hercules,intel,1383.5,6.363961030678928,1379,1388,2062.0,5.656854249492381,2058,2066,2
-cpld_debug_pdlib_p8_intel,orion,intel,1753.5,67.17514421272202,1706,1801,1995.0,5.656854249492381,1991,1999,2
-cpld_debug_pdlib_p8_intel,ursa,intel,1166.5,7.7781745930520225,1161,1172,2188.5,10.606601717798213,2181,2196,2
-cpld_debug_pdlib_p8_intel,wcoss2,intel,1437.5,0.7071067811865476,1437,1438,1874.5,6.363961030678928,1870,1879,2
+cpld_debug_pdlib_p8_intel,acorn,intel,1461.0,,1461,1461,1964.0,,1964,1964,1
+cpld_debug_pdlib_p8_intel,derecho,intel,1389.0,,1389,1389,1896.0,,1896,1896,1
+cpld_debug_pdlib_p8_intel,gaeac6,intel,974.0,,974,974,6339.0,,6339,6339,1
+cpld_debug_pdlib_p8_intel,hercules,intel,1379.0,,1379,1379,2058.0,,2058,2058,1
+cpld_debug_pdlib_p8_intel,orion,intel,1801.0,,1801,1801,1991.0,,1991,1991,1
+cpld_debug_pdlib_p8_intel,ursa,intel,1161.0,,1161,1161,2196.0,,2196,2196,1
+cpld_debug_pdlib_p8_intel,wcoss2,intel,1438.0,,1438,1438,1870.0,,1870,1870,1

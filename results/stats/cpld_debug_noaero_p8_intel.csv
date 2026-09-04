@@ -1,6 +1,6 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_debug_noaero_p8_intel,derecho,intel,361.5,0.7071067811865476,361,362,1900.0,0.0,1900,1900,2
-cpld_debug_noaero_p8_intel,gaeac6,intel,234.5,2.1213203435596424,233,236,6339.0,0.0,6339,6339,2
-cpld_debug_noaero_p8_intel,hercules,intel,380.5,98.2878425849301,311,450,2068.0,7.0710678118654755,2063,2073,2
-cpld_debug_noaero_p8_intel,orion,intel,475.0,5.656854249492381,471,479,2014.5,4.949747468305833,2011,2018,2
-cpld_debug_noaero_p8_intel,ursa,intel,271.0,4.242640687119285,268,274,2106.5,6.363961030678928,2102,2111,2
+cpld_debug_noaero_p8_intel,derecho,intel,362.0,,362,362,1900.0,,1900,1900,1
+cpld_debug_noaero_p8_intel,gaeac6,intel,233.0,,233,233,6339.0,,6339,6339,1
+cpld_debug_noaero_p8_intel,hercules,intel,450.0,,450,450,2063.0,,2063,2063,1
+cpld_debug_noaero_p8_intel,orion,intel,479.0,,479,479,2018.0,,2018,2018,1
+cpld_debug_noaero_p8_intel,ursa,intel,268.0,,268,268,2111.0,,2111,2111,1

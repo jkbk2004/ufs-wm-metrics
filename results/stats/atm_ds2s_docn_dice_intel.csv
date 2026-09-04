@@ -1,6 +1,6 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-atm_ds2s_docn_dice_intel,derecho,intel,310.0,2.8284271247461903,308,312,1850.0,0.0,1850,1850,2
-atm_ds2s_docn_dice_intel,gaeac6,intel,192.0,5.656854249492381,188,196,6339.0,0.0,6339,6339,2
-atm_ds2s_docn_dice_intel,hercules,intel,259.5,17.67766952966369,247,272,2055.5,2.1213203435596424,2054,2057,2
-atm_ds2s_docn_dice_intel,orion,intel,324.5,9.192388155425117,318,331,1989.5,2.1213203435596424,1988,1991,2
-atm_ds2s_docn_dice_intel,ursa,intel,781.0,820.2438661763952,201,1361,2880.5,33.23401871576773,2857,2904,2
+atm_ds2s_docn_dice_intel,derecho,intel,308.0,,308,308,1850.0,,1850,1850,1
+atm_ds2s_docn_dice_intel,gaeac6,intel,196.0,,196,196,6339.0,,6339,6339,1
+atm_ds2s_docn_dice_intel,hercules,intel,272.0,,272,272,2054.0,,2054,2054,1
+atm_ds2s_docn_dice_intel,orion,intel,318.0,,318,318,1991.0,,1991,1991,1
+atm_ds2s_docn_dice_intel,ursa,intel,201.0,,201,201,2857.0,,2857,2857,1

@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_mpi_pdlib_p8_intel,acorn,intel,912.5,0.7071067811865476,912,913,1890.0,0.0,1890,1890,2
-cpld_mpi_pdlib_p8_intel,derecho,intel,875.5,0.7071067811865476,875,876,1839.5,0.7071067811865476,1839,1840,2
-cpld_mpi_pdlib_p8_intel,gaeac6,intel,609.5,0.7071067811865476,609,610,6338.0,0.0,6338,6338,2
-cpld_mpi_pdlib_p8_intel,hercules,intel,798.5,14.849242404917497,788,809,2004.0,1.4142135623730951,2003,2005,2
-cpld_mpi_pdlib_p8_intel,orion,intel,1473.5,48.79036790187178,1439,1508,1929.5,2.1213203435596424,1928,1931,2
-cpld_mpi_pdlib_p8_intel,ursa,intel,721.0,11.313708498984761,713,729,2100.5,2.1213203435596424,2099,2102,2
-cpld_mpi_pdlib_p8_intel,wcoss2,intel,936.0,8.48528137423857,930,942,1806.0,4.242640687119285,1803,1809,2
+cpld_mpi_pdlib_p8_intel,acorn,intel,912.0,,912,912,1890.0,,1890,1890,1
+cpld_mpi_pdlib_p8_intel,derecho,intel,875.0,,875,875,1840.0,,1840,1840,1
+cpld_mpi_pdlib_p8_intel,gaeac6,intel,610.0,,610,610,6338.0,,6338,6338,1
+cpld_mpi_pdlib_p8_intel,hercules,intel,809.0,,809,809,2005.0,,2005,2005,1
+cpld_mpi_pdlib_p8_intel,orion,intel,1508.0,,1508,1508,1931.0,,1931,1931,1
+cpld_mpi_pdlib_p8_intel,ursa,intel,713.0,,713,713,2102.0,,2102,2102,1
+cpld_mpi_pdlib_p8_intel,wcoss2,intel,942.0,,942,942,1803.0,,1803,1803,1

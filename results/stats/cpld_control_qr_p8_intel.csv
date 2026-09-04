@@ -1,8 +1,8 @@
 test_name,machine,compiler,core_mean,core_std,core_min,core_max,mem_mean,mem_std,mem_min,mem_max,n_hashes
-cpld_control_qr_p8_intel,acorn,intel,498.5,7.7781745930520225,493,504,3371.5,0.7071067811865476,3371,3372,2
-cpld_control_qr_p8_intel,derecho,intel,494.5,7.7781745930520225,489,500,2031.5,0.7071067811865476,2031,2032,2
-cpld_control_qr_p8_intel,gaeac6,intel,312.5,0.7071067811865476,312,313,6338.5,0.7071067811865476,6338,6339,2
-cpld_control_qr_p8_intel,hercules,intel,491.5,21.920310216782973,476,507,2272.5,2.1213203435596424,2271,2274,2
-cpld_control_qr_p8_intel,orion,intel,1086.5,91.21677477306463,1022,1151,2209.0,9.899494936611665,2202,2216,2
-cpld_control_qr_p8_intel,ursa,intel,400.5,0.7071067811865476,400,401,2357.5,0.7071067811865476,2357,2358,2
-cpld_control_qr_p8_intel,wcoss2,intel,503.5,2.1213203435596424,502,505,1994.0,0.0,1994,1994,2
+cpld_control_qr_p8_intel,acorn,intel,504.0,,504,504,3372.0,,3372,3372,1
+cpld_control_qr_p8_intel,derecho,intel,500.0,,500,500,2032.0,,2032,2032,1
+cpld_control_qr_p8_intel,gaeac6,intel,313.0,,313,313,6338.0,,6338,6338,1
+cpld_control_qr_p8_intel,hercules,intel,507.0,,507,507,2271.0,,2271,2271,1
+cpld_control_qr_p8_intel,orion,intel,1022.0,,1022,1022,2216.0,,2216,2216,1
+cpld_control_qr_p8_intel,ursa,intel,401.0,,401,401,2358.0,,2358,2358,1
+cpld_control_qr_p8_intel,wcoss2,intel,502.0,,502,502,1994.0,,1994,1994,1
